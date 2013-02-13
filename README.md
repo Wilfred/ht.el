@@ -19,3 +19,6 @@ Common operations with hash tables (e.g. enumerate the keys) is too
 difficult in Emacs lisp. hm.el provides a consistent naming scheme
 (contrast `make-hash-table` with `puthash`) and (IMO) a more natural
 argument ordering.
+
+hm.el also deliberately returns `nil` from functions that modify the
+hash table.
