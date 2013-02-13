@@ -4,14 +4,14 @@ The missing hashmap utility library for Emacs.
 
 ## Functions
 
-* `ht-create`
-* `ht-get`
-* `ht-set`
-* `ht-remove`
-* `ht-clear`
-* `ht-keys`
-* `ht-values`
-* `ht-items`
+* `ht-create` `()`
+* `ht-get` `(table key default?)`
+* `ht-set` `(table key value)`
+* `ht-remove` `(table key)`
+* `ht-clear` `(table)`
+* `ht-keys` `(table)`
+* `ht-values` `(table)`
+* `ht-items` `(table)`
 
 ## Why?
 
