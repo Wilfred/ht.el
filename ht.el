@@ -1,9 +1,9 @@
-;;; hm.el --- The missing hashmap library for Emacs
+;;; ht.el --- The missing hash table library for Emacs
 
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.1
+;; Version: 0.2
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -21,57 +21,56 @@
 
 ;;; Commentary:
 
-;; The missing hashmap utility library for Emacs.
+;; The missing hash table utility library for Emacs.
 ;;
-;; See documentation on https://github.com/Wilfred/hm.el
+;; See documentation on https://github.com/Wilfred/ht.el
 
 ;;; Todo:
 
 ;; * Unit tests
-;; * Use the terminology 'hash table' everywhere, to be consistent with Emacs built-ins.
 
 ;;; Code:
 
-(defun hm-create ()
+(defun ht-create ()
   "Create an empty hash table."
   (make-hash-table :test 'equal))
 
-(defun hm-get (table key &optional default)
+(defun ht-get (table key &optional default)
   "Look up KEY in TABLE, and return the matching value.
 If KEY isn't present, return DEFAULT (nil if not specified)."
   (gethash key table default))
 
-(defun hm-set (table key value)
+(defun ht-set (table key value)
   "Associate KEY in TABLE with VALUE."
   (puthash key value table)
   nil)
 
-(defun hm-remove (table key)
+(defun ht-remove (table key)
   "Remove KEY from TABLE."
   (remhash key table))
 
-(defun hm-clear (table)
+(defun ht-clear (table)
   "Remove all keys from TABLE."
   (clrhash table)
   nil)
 
-(defun hm-keys (table)
+(defun ht-keys (table)
   "Return a list of all the keys in TABLE."
   (let ((keys))
     (maphash (lambda (key value) (setq keys (cons key keys))) table)
     keys))
 
-(defun hm-values (table)
+(defun ht-values (table)
   "Return a list of all the values in TABLE."
   (let ((values))
     (maphash (lambda (key value) (setq values (cons value values))) table)
     values))
 
-(defun hm-items (table)
+(defun ht-items (table)
   "Return a list of two-element lists '(key value) from TABLE."
     (let ((items))
     (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
     items))
 
-(provide 'hm)
-;;; hm.el ends here
+(provide 'ht)
+;;; ht.el ends here
