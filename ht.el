@@ -27,7 +27,7 @@
 
 ;;; Todo:
 
-;; * Unit tests
+;; * Full unit tests
 
 ;;; Code:
 

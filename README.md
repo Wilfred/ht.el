@@ -34,3 +34,7 @@ ht.el offers:
 ### Similar libraries
 
 * [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on alists)
+
+## Running tests
+
+Just execute eval-buffer in ht-tests.el
