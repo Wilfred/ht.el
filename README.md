@@ -1,6 +1,6 @@
 # ht.el
 
-The missing hashmap utility library for Emacs.
+The missing hash table utility library for Emacs.
 
 ## Functions
 
