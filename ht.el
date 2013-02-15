@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.2
+;; Version: 0.3
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
