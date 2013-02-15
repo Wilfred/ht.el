@@ -12,6 +12,7 @@ The missing hashmap utility library for Emacs.
 * `ht-keys` `(table)`
 * `ht-values` `(table)`
 * `ht-items` `(table)`
+* `ht-copy` `(table)`
 
 ## Why?
 

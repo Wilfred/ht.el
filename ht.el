@@ -72,5 +72,11 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
     (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
     items))
 
+(defun ht-copy (table)
+  "Return a shallow copy of TABLE (keys and values are shared)."
+  (copy-hash-table table))
+
+
+
 (provide 'ht)
 ;;; ht.el ends here
