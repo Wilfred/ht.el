@@ -21,6 +21,11 @@
          (h (ht-from-alist alist)))
     (should (equal (ht-items h) '(("key1" "value1"))))))
 
+(ert-deftest ht-test-from-alist-masked-values ()
+  (let* ((alist '(("key1" . "value1") ("key1" . "value2")))
+         (h (ht-from-alist alist)))
+    (should (equal (ht-items h) '(("key1" "value1"))))))
+
 (ert-deftest ht-test-from-plist ()
   (let* ((plist '("key1" "value1"))
          (h (ht-from-plist plist)))

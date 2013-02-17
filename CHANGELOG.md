@@ -1,3 +1,8 @@
+## v0.6
+
+* Fixed a bug where ht-from-alist would overwrite the latest key-value
+  association with older ones
+
 ## v0.5
 
 * Added ht-from-plist
