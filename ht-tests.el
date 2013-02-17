@@ -14,7 +14,7 @@
 (ert-deftest ht-test-items ()
   (let ((h (ht-create)))
     (ht-set h "key1" "value1")
-    (should (equal (sort (ht-items h) '<) '(("key1" "value1"))))))
+    (should (equal (ht-items h) '(("key1" "value1"))))))
 
 (ert-deftest ht-test-from-alist ()
   (let* ((alist '(("key1" . "value1")))
