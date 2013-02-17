@@ -6,6 +6,6 @@
     (ht-set h "foo" "bar")
     (should (equal (ht-keys h) (list "foo")))))
 
-(ert-run-tests-batch "ht-test-")
-
-
+(defun ht-run-tests ()
+  (interactive)
+  (ert-run-tests-interactively "ht-test-"))

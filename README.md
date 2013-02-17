@@ -37,4 +37,4 @@ ht.el offers:
 
 ## Running tests
 
-Just execute eval-buffer in ht-tests.el
+`M-x ht-run-tests`
