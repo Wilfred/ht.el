@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.4
+;; Version: 0.5
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -43,6 +43,38 @@
     (dolist (pair alist h)
       (let ((key (car pair))
             (value (cdr pair)))
+        (ht-set h key value)))))
+
+;; based on the excellent -partition from dash.el, but we aim to be self-contained
+(defun ht/group-pairs (list)
+  "Returns a new list with the items in LIST grouped into pairs.
+Errors if LIST doesn't contain an even number of elements."
+  (let ((result)
+        (sublist)
+        (len 0))
+
+    (while list
+      ;; take the head of LIST and push onto SUBLIST
+      (setq sublist (cons (car list) sublist))
+      (setq list (cdr list))
+      
+      (setq len (1+ len))
+
+      (when (= len 2)
+        ;; push this two-item list onto RESULT
+        (setq result (cons (nreverse sublist) result))
+        (setq sublist nil)
+        (setq len 0)))
+    
+    (when sublist (error "Expected an even number of elements"))
+    (nreverse result)))
+
+(defun ht-from-plist (plist)
+  "Create a hash table with initial values according to PLIST."
+  (let ((h (ht-create)))
+    (dolist (pair (ht/group-pairs plist) h)
+      (let ((key (first pair))
+            (value (second pair)))
         (ht-set h key value)))))
 
 (defun ht-from-alist (alist)

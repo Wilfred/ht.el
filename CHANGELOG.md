@@ -1,3 +1,7 @@
+## v0.5
+
+* Added ht-from-plist
+
 ## v0.4
 
 * Added ht-from-alist

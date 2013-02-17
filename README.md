@@ -14,6 +14,7 @@ The missing hash table utility library for Emacs.
 * `ht-items` `(table)`
 * `ht-copy` `(table)`
 * `ht-from-alist` `(alist)`
+* `ht-from-plist` `(plist)`
 
 ## Why?
 
