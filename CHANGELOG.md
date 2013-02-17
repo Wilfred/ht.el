@@ -1,3 +1,7 @@
+## v0.4
+
+* Added ht-from-alist
+
 ## v0.3
 
 * Added ht-copy

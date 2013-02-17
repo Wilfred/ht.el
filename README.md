@@ -13,6 +13,7 @@ The missing hash table utility library for Emacs.
 * `ht-values` `(table)`
 * `ht-items` `(table)`
 * `ht-copy` `(table)`
+* `ht-from-alist` `(alist)`
 
 ## Why?
 
@@ -38,3 +39,21 @@ ht.el offers:
 ## Running tests
 
 `M-x ht-run-tests`
+
+## What's an alist/plist?
+
+An alist is an association list, which is a list of pairs. It looks like this:
+
+    ((key1 . value1)
+     (key2 . value2)
+     (key3 . value3))
+     
+A plist is a property list, which is a flat list with an even number
+of items. It looks like this:
+
+    (key1 value1
+     key2 value2
+     key3 value3)
+
+Both of these are slow. ht.el provides `ht-from-alist` and
+`ht-from-plist` to help you convert to hash tables.

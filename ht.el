@@ -31,9 +31,19 @@
 
 ;;; Code:
 
+(eval-when-compile (require 'cl))
+
 (defun ht-create ()
   "Create an empty hash table."
   (make-hash-table :test 'equal))
+
+(defun ht-from-alist (alist)
+  "Create a hash table with initial values according to ALIST."
+  (let ((h (ht-create)))
+    (dolist (pair alist h)
+      (let ((key (car pair))
+            (value (cdr pair)))
+        (ht-set h key value)))))
 
 (defun ht-get (table key &optional default)
   "Look up KEY in TABLE, and return the matching value.
@@ -75,8 +85,6 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
 (defun ht-copy (table)
   "Return a shallow copy of TABLE (keys and values are shared)."
   (copy-hash-table table))
-
-
 
 (provide 'ht)
 ;;; ht.el ends here
