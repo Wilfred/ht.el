@@ -1,6 +1,10 @@
 (require 'ert)
 (require 'ht)
 
+(ert-deftest ht-test-create-non-default-test ()
+  (let ((h (ht-create 'eq)))
+    (should (equal (hash-table-test h) 'eq))))	
+
 (ert-deftest ht-test-keys ()
   (let ((h (ht-create)))
     (ht-set h "foo" "bar")
