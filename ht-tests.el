@@ -35,6 +35,13 @@
          (h (ht-from-plist plist)))
     (should (equal (ht-items h) '(("key1" "value1"))))))
 
+(ert-deftest ht-test-to-alist ()
+  (let* ((alist '(("key1" . "value1") ("key2" . "value2")))
+	 (h (ht-from-alist alist)))
+    (should (or (equal (ht-to-alist h) alist)
+		(equal (ht-to-alist h) (reverse alist))))))
+    
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

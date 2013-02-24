@@ -120,9 +120,35 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
     (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
     items))
 
+(defalias 'ht-to-plist 'ht-items
+  "Return a list of two-element lists '(key value) from TABLE.
+
+Note that since items are stored non-sequentially in the
+hash-table the following isn't always true:
+
+\(let ((data '(a b c d)))
+  (equalp data
+          (ht-to-plist (ht-from-plist data))))")
+
 (defun ht-copy (table)
   "Return a shallow copy of TABLE (keys and values are shared)."
   (copy-hash-table table))
+
+(defun ht-to-alist (table)
+  "Return a list of two-element lists '(key . value) from TABLE.
+
+Note that since items are stored non-sequentially in the
+hash-table the following isn't always true:
+
+\(let ((data '(a b c d)))
+  (equalp data
+          (ht-to-alist (ht-from-alist data))))"
+  (let ((alist '()))
+    (maphash (lambda (key value)
+               (setq alist (cons (cons key value) alist)))
+             table)
+    alist))
+
 
 (provide 'ht)
 ;;; ht.el ends here
