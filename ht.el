@@ -31,8 +31,6 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
-
 (defun ht-create ()
   "Create an empty hash table."
   (make-hash-table :test 'equal))
@@ -75,8 +73,8 @@ Errors if LIST doesn't contain an even number of elements."
   "Create a hash table with initial values according to PLIST."
   (let ((h (ht-create)))
     (dolist (pair (ht/group-pairs plist) h)
-      (let ((key (first pair))
-            (value (second pair)))
+      (let ((key (car pair))
+            (value (cadr pair)))
         (ht-set h key value)))))
 
 (defun ht-get (table key &optional default)
