@@ -56,8 +56,8 @@ This could be alternatively written as:
     (defun say-hello (name)
       (let ((greetings
              (ht-from-plist
-              "Bob" "Hey Bob!"
-              "Chris" "Hi Chris!")))
+              '("Bob" "Hey Bob!"
+                "Chris" "Hi Chris!"))))
         (ht-get greetings name "Hello stranger!")))
 
 ## Running tests
