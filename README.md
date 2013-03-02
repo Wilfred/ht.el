@@ -37,6 +37,29 @@ ht.el offers:
 
 * [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on alists)
 
+## Examples
+
+Basic usage:
+
+    (require 'ht)
+
+    (defun say-hello (name)
+      (let ((greetings (ht-create)))
+        (ht-set greetings "Bob" "Hey Bob!")
+        (ht-set greetings "Chris" "Hi Chris!")
+        (ht-get greetings name "Hello stranger!")))
+
+This could be alternatively written as:
+
+    (require 'ht)
+
+    (defun say-hello (name)
+      (let ((greetings
+             (ht-from-plist
+              "Bob" "Hey Bob!"
+              "Chris" "Hi Chris!")))
+        (ht-get greetings name "Hello stranger!")))
+
 ## Running tests
 
 `M-x ht-run-tests`
