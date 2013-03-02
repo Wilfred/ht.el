@@ -49,6 +49,12 @@ An alist is an association list, which is a list of pairs. It looks like this:
      (key2 . value2)
      (key3 . value3))
      
+An alist can also look like this:
+     
+    ((key1 . value1)
+     (key2 . value2)
+     (key1 . oldvalue))
+     
 A plist is a property list, which is a flat list with an even number
 of items. It looks like this:
 
