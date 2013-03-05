@@ -41,6 +41,10 @@
     (should (or (equal (ht-to-alist h) alist)
                 (equal (ht-to-alist h) (reverse alist))))))
 
+(ert-deftest ht-test-to-plist ()
+  (let* ((h (ht-create)))
+    (ht-set h "foo" "bar")
+    (should (equal (ht-to-plist h) '("foo" "bar")))))
 
 (defun ht-run-tests ()
   (interactive)
