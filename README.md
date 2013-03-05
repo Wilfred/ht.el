@@ -4,7 +4,7 @@ The missing hash table utility library for Emacs.
 
 ## Functions
 
-* `ht-create` `()`
+* `ht-create` `(test?)`
 * `ht-get` `(table key default?)`
 * `ht-set` `(table key value)`
 * `ht-remove` `(table key)`
@@ -15,6 +15,8 @@ The missing hash table utility library for Emacs.
 * `ht-copy` `(table)`
 * `ht-from-alist` `(alist)`
 * `ht-from-plist` `(plist)`
+* `ht-to-alist` `(table)`
+* `ht-to-plist` `(table)`
 
 ## Why?
 
@@ -86,4 +88,6 @@ of items. It looks like this:
      key3 value3)
 
 Both of these are slow. ht.el provides `ht-from-alist` and
-`ht-from-plist` to help you convert to hash tables.
+`ht-from-plist` to help you convert to hash tables. If you need to
+work with an alist or plist, use the functions `ht-to-alist` and
+`ht-to-plist` to convert an hash table to those formats.
