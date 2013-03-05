@@ -31,11 +31,15 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(defun ht-create (&optional test)
+  "Create an empty hash table.
 
-(defun ht-create ()
-  "Create an empty hash table."
-  (make-hash-table :test 'equal))
+TEST indicates the function used to compare the hash
+keys. Default is `equal'. It can be `eq', `eql', `equal' or a
+user-supplied test created via `define-hash-table-test'."
+  (make-hash-table :test (if test
+                             test
+                           'equal)))
 
 (defun ht-from-alist (alist)
   "Create a hash table with initial values according to ALIST."
@@ -75,8 +79,8 @@ Errors if LIST doesn't contain an even number of elements."
   "Create a hash table with initial values according to PLIST."
   (let ((h (ht-create)))
     (dolist (pair (ht/group-pairs plist) h)
-      (let ((key (first pair))
-            (value (second pair)))
+      (let ((key (car pair))
+            (value (cadr pair)))
         (ht-set h key value)))))
 
 (defun ht-get (table key &optional default)
@@ -116,9 +120,35 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
     (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
     items))
 
+(defalias 'ht-to-plist 'ht-items
+  "Return a list of two-element lists '(key value) from TABLE.
+
+Note that since items are stored non-sequentially in the
+hash-table the following isn't always true:
+
+\(let ((data '(a b c d)))
+  (equalp data
+          (ht-to-plist (ht-from-plist data))))")
+
 (defun ht-copy (table)
   "Return a shallow copy of TABLE (keys and values are shared)."
   (copy-hash-table table))
+
+(defun ht-to-alist (table)
+  "Return a list of two-element lists '(key . value) from TABLE.
+
+Note that since items are stored non-sequentially in the
+hash-table the following isn't always true:
+
+\(let ((data '(a b c d)))
+  (equalp data
+          (ht-to-alist (ht-from-alist data))))"
+  (let ((alist '()))
+    (maphash (lambda (key value)
+               (setq alist (cons (cons key value) alist)))
+             table)
+    alist))
+
 
 (provide 'ht)
 ;;; ht.el ends here
