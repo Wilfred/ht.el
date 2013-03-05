@@ -37,9 +37,7 @@
 TEST indicates the function used to compare the hash
 keys. Default is `equal'. It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
-  (make-hash-table :test (if test
-                             test
-                           'equal)))
+  (make-hash-table :test (or test 'equal)))
 
 (defun ht-from-alist (alist)
   "Create a hash table with initial values according to ALIST."
