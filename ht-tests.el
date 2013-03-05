@@ -3,7 +3,7 @@
 
 (ert-deftest ht-test-create-non-default-test ()
   (let ((h (ht-create 'eq)))
-    (should (equal (hash-table-test h) 'eq))))	
+    (should (equal (hash-table-test h) 'eq))))
 
 (ert-deftest ht-test-keys ()
   (let ((h (ht-create)))
@@ -37,10 +37,10 @@
 
 (ert-deftest ht-test-to-alist ()
   (let* ((alist '(("key1" . "value1") ("key2" . "value2")))
-	 (h (ht-from-alist alist)))
+         (h (ht-from-alist alist)))
     (should (or (equal (ht-to-alist h) alist)
-		(equal (ht-to-alist h) (reverse alist))))))
-    
+                (equal (ht-to-alist h) (reverse alist))))))
+
 
 (defun ht-run-tests ()
   (interactive)
