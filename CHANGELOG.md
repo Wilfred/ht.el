@@ -1,3 +1,7 @@
+## v0.7
+
+* Added ht-to-alist and ht-to-plist
+
 ## v0.6
 
 * Fixed a bug where ht-from-alist would overwrite the latest key-value
