@@ -17,6 +17,19 @@
   (let ((h (ht-create 'eq)))
     (should (equal (hash-table-test h) 'eq))))
 
+(ert-deftest ht-test-remove ()
+  (let ((h (ht-create)))
+    (ht-set h "foo" "bar")
+    (ht-remove h "foo")
+    (should (equal (ht-get h "foo") nil))))
+
+(ert-deftest ht-test-clear ()
+  (let ((h (ht-create)))
+    (ht-set h "foo" "bar")
+    (ht-set h "biz" "baz")
+    (ht-clear h)
+    (should (equal (ht-items h) nil))))
+
 (ert-deftest ht-test-keys ()
   (let ((h (ht-create)))
     (ht-set h "foo" "bar")

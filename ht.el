@@ -25,10 +25,6 @@
 ;;
 ;; See documentation on https://github.com/Wilfred/ht.el
 
-;;; Todo:
-
-;; * Full unit tests
-
 ;;; Code:
 
 (defun ht-create (&optional test)
