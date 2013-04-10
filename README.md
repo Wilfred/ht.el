@@ -93,7 +93,3 @@ Both of these are slow. ht.el provides `ht-from-alist` and
 `ht-from-plist` to help you convert to hash tables. If you need to
 work with an alist or plist, use the functions `ht-to-alist` and
 `ht-to-plist` to convert an hash table to those formats.
-
-## Changelog
-
-* v0.8 -- Added the `ht` macro to make hash table literals easy

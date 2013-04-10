@@ -1,3 +1,7 @@
+## v0.8
+
+* Added the `ht` macro to make hash table literals easy
+
 ## v0.7
 
 * Added ht-to-alist and ht-to-plist
