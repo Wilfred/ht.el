@@ -31,7 +31,7 @@
   "Create an empty hash table.
 
 TEST indicates the function used to compare the hash
-keys. Default is `equal'. It can be `eq', `eql', `equal' or a
+keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
   (make-hash-table :test (or test 'equal)))
 
@@ -47,7 +47,7 @@ user-supplied test created via `define-hash-table-test'."
 
 ;; based on the excellent -partition from dash.el, but we aim to be self-contained
 (defun ht/group-pairs (list)
-  "Returns a new list with the items in LIST grouped into pairs.
+  "Return a new list with the items in LIST grouped into pairs.
 Errors if LIST doesn't contain an even number of elements."
   (let ((result)
         (sublist)
@@ -118,7 +118,7 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
   "Return a flat list '(key1 value1 key2 value2...) from TABLE.
 
 Note that hash tables are unordered, so this cannot be an exact
-inverse of `ht-from-plist'. The following is not guaranteed:
+inverse of `ht-from-plist'.  The following is not guaranteed:
 
 \(let ((data '(a b c d)))
   (equalp data
@@ -133,7 +133,7 @@ inverse of `ht-from-plist'. The following is not guaranteed:
   "Return a list of two-element lists '(key . value) from TABLE.
 
 Note that hash tables are unordered, so this cannot be an exact
-inverse of `ht-from-alist'. The following is not guaranteed:
+inverse of `ht-from-alist'.  The following is not guaranteed:
 
 \(let ((data '((a . b) (c . d))))
   (equalp data
