@@ -18,6 +18,10 @@ The missing hash table utility library for Emacs.
 * `ht-to-alist` `(table)`
 * `ht-to-plist` `(table)`
 
+## Macros
+
+* `ht` `(&rest pairs)`
+
 ## Why?
 
 Libraries like [s.el](https://github.com/magnars/s.el) (strings) and
@@ -41,14 +45,13 @@ ht.el offers:
 
 ## Examples
 
-Basic usage:
+Creating a hash table and accessing it:
 
     (require 'ht)
 
     (defun say-hello (name)
-      (let ((greetings (ht-create)))
-        (ht-set greetings "Bob" "Hey Bob!")
-        (ht-set greetings "Chris" "Hi Chris!")
+      (let ((greetings (ht ("Bob" "Hey bob!")
+                           ("Chris" "Hi Chris!"))))
         (ht-get greetings name "Hello stranger!")))
 
 This could be alternatively written as:
@@ -56,10 +59,9 @@ This could be alternatively written as:
     (require 'ht)
 
     (defun say-hello (name)
-      (let ((greetings
-             (ht-from-plist
-              '("Bob" "Hey Bob!"
-                "Chris" "Hi Chris!"))))
+      (let ((greetings (ht-create)))
+        (ht-set greetings "Bob" "Hey Bob!")
+        (ht-set greetings "Chris" "Hi Chris!")
         (ht-get greetings name "Hello stranger!")))
 
 ## Running tests
@@ -91,3 +93,7 @@ Both of these are slow. ht.el provides `ht-from-alist` and
 `ht-from-plist` to help you convert to hash tables. If you need to
 work with an alist or plist, use the functions `ht-to-alist` and
 `ht-to-plist` to convert an hash table to those formats.
+
+## Changelog
+
+* v0.8 -- Added the `ht` macro to make hash table literals easy

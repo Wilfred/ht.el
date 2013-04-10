@@ -27,6 +27,19 @@
 
 ;;; Code:
 
+(require 'cl) ;; gensym
+
+(defmacro ht (&rest pairs)
+  "Create a hash table with key-value bindings set according to PAIRS."
+  (let* ((table-symbol (gensym "ht-temp"))
+        (assignments
+         (mapcar
+          (lambda (pair) `(ht-set ,table-symbol ,@pair))
+          pairs)))
+    `(let ((,table-symbol (ht-create)))
+       ,@assignments
+       ,table-symbol)))
+
 (defun ht-create (&optional test)
   "Create an empty hash table.
 

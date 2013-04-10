@@ -1,6 +1,13 @@
 (require 'ert)
 (require 'ht)
 
+(ert-deftest ht-test-ht ()
+  (let ((h (ht (1 2) ("foo" (1+ 2)))))
+    (should (and (member 1 (ht-keys h))
+                 (member "foo" (ht-keys h))
+                 (member 2 (ht-values h))
+                 (member 3 (ht-values h))))))
+
 (ert-deftest ht-test-create ()
   (should (hash-table-p (ht-create))))
 
