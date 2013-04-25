@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.9
+;; Version: 0.10
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -164,6 +164,7 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
              table)
     alist))
 
+(defalias 'ht-p 'hash-table-p)
 
 (provide 'ht)
 ;;; ht.el ends here

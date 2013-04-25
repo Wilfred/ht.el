@@ -1,3 +1,7 @@
+## v0.10
+
+* Added `ht-p`, an alias of `hash-table-p`, (mainly for completeness).
+
 ## v0.9
 
 * Added `ht-update`.

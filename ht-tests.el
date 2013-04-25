@@ -86,6 +86,11 @@
     (ht-set test-table "foo" "bar")
     (should (equal (ht-to-plist test-table) '("foo" "bar")))))
 
+(ert-deftest ht-test-p ()
+  "Ensure `ht-p' only returns t for hash-tables."
+  (should (ht-p (ht)))
+  (should-not (ht-p nil)))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

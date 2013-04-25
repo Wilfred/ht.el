@@ -18,6 +18,7 @@ The missing hash table utility library for Emacs.
 * `ht-from-plist` `(plist)`
 * `ht-to-alist` `(table)`
 * `ht-to-plist` `(table)`
+* `ht-p` `(table-or-object)`
 
 ## Macros
 
