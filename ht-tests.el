@@ -60,6 +60,22 @@
     (ht-set test-table "key1" "value1")
     (should (equal (ht-items test-table) '(("key1" "value1"))))))
 
+(ert-deftest ht-test-map ()
+  (let ((total 0))
+    (ht-map
+     (lambda (key value) (setq total (+ total value)))
+     (ht ("foo" 1) ("bar" 2)))
+    (should
+     (equal total 3))))
+
+(ert-deftest ht-test-amap ()
+  (let ((total 0))
+    (ht-amap
+     (setq total (+ total value))
+     (ht ("foo" 1) ("bar" 2)))
+    (should
+     (equal total 3))))
+
 (ert-deftest ht-test-from-alist ()
   (let* ((alist '(("key1" . "value1")))
          (test-table (ht-from-alist alist)))

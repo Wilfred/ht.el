@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.10
+;; Version: 0.11
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -133,6 +133,14 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
     (let ((items))
     (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
     items))
+
+(defalias 'ht-map 'maphash)
+
+(defmacro ht-amap (form table)
+  "Anaphoric version of `ht-map.
+For every key-value pair in TABLE, evaluate FORM with the
+variables key and value bound."
+  `(ht-map (lambda (key value) ,form) ,table))
 
 (defun ht-to-plist (table)
   "Return a flat list '(key1 value1 key2 value2...) from TABLE.

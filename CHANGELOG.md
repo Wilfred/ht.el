@@ -1,3 +1,7 @@
+## v0.11
+
+* Added `ht-map` and an anaphoric version `ht-amap`.
+
 ## v0.10
 
 * Added `ht-p`, an alias of `hash-table-p`, (mainly for completeness).
