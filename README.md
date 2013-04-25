@@ -14,7 +14,6 @@ The missing hash table utility library for Emacs.
 * `ht-values` `(table)`
 * `ht-items` `(table)`
 * `ht-map` `(function table)`
-* `ht-amap` `(form table)`
 * `ht-copy` `(table)`
 * `ht-from-alist` `(alist)`
 * `ht-from-plist` `(plist)`
@@ -25,6 +24,7 @@ The missing hash table utility library for Emacs.
 ## Macros
 
 * `ht` `(&rest pairs)`
+* `ht-amap` `(form table)`
 
 ## Why?
 
