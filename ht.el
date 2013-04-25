@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 0.8
+;; Version: 0.9
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -98,6 +98,13 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
 (defun ht-set (table key value)
   "Associate KEY in TABLE with VALUE."
   (puthash key value table)
+  nil)
+
+(defun ht-update (table from-table)
+  "Update TABLE according to every key-value pair in FROM-TABLE."
+  (maphash
+   (lambda (key value) (puthash key value table))
+   from-table)
   nil)
 
 (defun ht-remove (table key)

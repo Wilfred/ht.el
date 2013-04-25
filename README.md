@@ -7,6 +7,7 @@ The missing hash table utility library for Emacs.
 * `ht-create` `(test?)`
 * `ht-get` `(table key default?)`
 * `ht-set` `(table key value)`
+* `ht-update` `(table table)`
 * `ht-remove` `(table key)`
 * `ht-clear` `(table)`
 * `ht-keys` `(table)`

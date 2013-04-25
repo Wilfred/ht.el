@@ -1,3 +1,7 @@
+## v0.9
+
+* Added `ht-update`.
+
 ## v0.8
 
 * Added the `ht` macro to make hash table literals easy

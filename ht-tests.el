@@ -20,6 +20,14 @@
   (let ((test-table (ht-create)))
     (should (equal (ht-get test-table "foo" "default") "default"))))
 
+(ert-deftest ht-test-update ()
+  (let ((test-table (ht ("foo" 1))))
+    (ht-update test-table (ht ("bar" 2)))
+    (should
+     (equal
+      (list "bar" "foo")
+      (sort (ht-keys test-table) 'string<)))))
+
 (ert-deftest ht-test-create-non-default-test ()
   (let ((test-table (ht-create 'eq)))
     (should (equal (hash-table-test test-table) 'eq))))
