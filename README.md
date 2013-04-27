@@ -62,7 +62,9 @@ ht.el offers:
 * A consistent naming scheme (contrast `make-hash-table` with `puthash`)
 * A more natural argument ordering
 * Mutation functions always return `nil`
-* A more comprehensive range of hash table operations
+* A more comprehensive range of hash table operations, including a
+  conventional map (`ht-map` returns a list, elisp's `maphash` returns
+  nil).
 
 ### Similar libraries
 
