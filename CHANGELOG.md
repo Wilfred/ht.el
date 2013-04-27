@@ -1,3 +1,7 @@
+## v1.1
+
+* Added `ht-contains-p`.
+
 ## v1.0 -- API Change
 
 * `ht-map` now returns a list, as you'd expect a map function to do.

@@ -133,6 +133,10 @@
   (should (ht-p (ht)))
   (should-not (ht-p nil)))
 
+(ert-deftest ht-test-contains-p ()
+  (should (ht-contains-p (ht ("key" nil)) "key"))
+  (should-not (ht-contains-p (ht) "key")))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

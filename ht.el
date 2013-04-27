@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 1.0
+;; Version: 1.1
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -181,6 +181,10 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
   (ht-amap (cons key value) table))
 
 (defalias 'ht-p 'hash-table-p)
+
+(defun ht-contains-p (table key)
+  "Return 't if TABLE contains KEY."
+  (not (eq (ht-get table key 'ht--not-found) 'ht--not-found)))
 
 (provide 'ht)
 ;;; ht.el ends here
