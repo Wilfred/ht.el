@@ -1,3 +1,6 @@
+## v1.0 -- API Change
+
+* `ht-map` now returns a list, as you'd expect a map function to do.
 ## v0.11
 
 * Added `ht-map` and an anaphoric version `ht-amap`.

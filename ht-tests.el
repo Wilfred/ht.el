@@ -68,6 +68,16 @@
     (should
      (equal total 3))))
 
+(ert-deftest ht-test-map-returns-list ()
+  (should
+   (equal
+    (sort
+     (ht-map
+      (lambda (key value) (+ 1 value))
+      (ht ("foo" 1) ("bar" 2)))
+     '<)
+    (list 2 3))))
+
 (ert-deftest ht-test-amap ()
   (let ((total 0))
     (ht-amap
