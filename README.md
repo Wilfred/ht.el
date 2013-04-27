@@ -26,6 +26,27 @@ The missing hash table utility library for Emacs.
 * `ht` `(&rest pairs)`
 * `ht-amap` `(form table)`
 
+## Examples
+
+Creating a hash table and accessing it:
+
+    (require 'ht)
+
+    (defun say-hello (name)
+      (let ((greetings (ht ("Bob" "Hey bob!")
+                           ("Chris" "Hi Chris!"))))
+        (ht-get greetings name "Hello stranger!")))
+
+This could be alternatively written as:
+
+    (require 'ht)
+
+    (defun say-hello (name)
+      (let ((greetings (ht-create)))
+        (ht-set greetings "Bob" "Hey Bob!")
+        (ht-set greetings "Chris" "Hi Chris!")
+        (ht-get greetings name "Hello stranger!")))
+
 ## Why?
 
 Libraries like [s.el](https://github.com/magnars/s.el) (strings) and
@@ -47,16 +68,6 @@ ht.el offers:
 
 * [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on alists)
 
-## API changelog
-
-ht.el uses semantic versioning, so an incompatible API change will
-result in the major version increasing. See CHANGELOG.md for a history
-of all changes.
-
-### v1.0
-
-* `ht-map` now returns a list.
-
 ## Installation
 
 ht.el is availabe on [MELPA](http://melpa.milkbox.net/) and
@@ -69,26 +80,15 @@ Add a package archive to your .emacs.d/init.el:
     
 then run `M-x package-install <RET> ht <RET>`
 
-## Examples
+## API changelog
 
-Creating a hash table and accessing it:
+ht.el uses semantic versioning, so an incompatible API change will
+result in the major version increasing. See CHANGELOG.md for a history
+of all changes.
 
-    (require 'ht)
+### v1.0
 
-    (defun say-hello (name)
-      (let ((greetings (ht ("Bob" "Hey bob!")
-                           ("Chris" "Hi Chris!"))))
-        (ht-get greetings name "Hello stranger!")))
-
-This could be alternatively written as:
-
-    (require 'ht)
-
-    (defun say-hello (name)
-      (let ((greetings (ht-create)))
-        (ht-set greetings "Bob" "Hey Bob!")
-        (ht-set greetings "Chris" "Hi Chris!")
-        (ht-get greetings name "Hello stranger!")))
+* `ht-map` now returns a list.
 
 ## Running tests
 
