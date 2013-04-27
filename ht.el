@@ -118,21 +118,15 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
 
 (defun ht-keys (table)
   "Return a list of all the keys in TABLE."
-  (let ((keys))
-    (maphash (lambda (key value) (setq keys (cons key keys))) table)
-    keys))
+  (ht-amap key table))
 
 (defun ht-values (table)
   "Return a list of all the values in TABLE."
-  (let ((values))
-    (maphash (lambda (key value) (setq values (cons value values))) table)
-    values))
+  (ht-amap value table))
 
 (defun ht-items (table)
   "Return a list of two-element lists '(key value) from TABLE."
-    (let ((items))
-    (maphash (lambda (key value) (setq items (cons (list key value) items))) table)
-    items))
+  (ht-amap (list key value) table))
 
 (defun ht-map (function table)
   "Apply FUNCTION to each key-value pair of TABLE, and make a list of the results.
@@ -184,11 +178,7 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
 \(let ((data '((a . b) (c . d))))
   (equalp data
           (ht-to-alist (ht-from-alist data))))"
-  (let ((alist '()))
-    (maphash (lambda (key value)
-               (setq alist (cons (cons key value) alist)))
-             table)
-    alist))
+  (ht-amap (cons key value) table))
 
 (defalias 'ht-p 'hash-table-p)
 
