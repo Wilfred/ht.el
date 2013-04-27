@@ -1,6 +1,9 @@
 ## v1.0 -- API Change
 
 * `ht-map` now returns a list, as you'd expect a map function to do.
+* Added `ht-each` for when you're only interested in side-effects.
+* Added an anaphoric version of `ht-each`, `ht-aeach`.
+
 ## v0.11
 
 * Added `ht-map` and an anaphoric version `ht-amap`.

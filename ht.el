@@ -149,6 +149,13 @@ FUNCTION is called with two arguments, KEY and VALUE."
 For every key-value pair in TABLE, evaluate FORM with the
 variables KEY and VALUE bound."
   `(ht-map (lambda (key value) ,form) ,table))
+
+(defalias 'ht-each 'maphash
+  "Apply FUNCTION to each key-value pair of TABLE.
+Returns nil, used for side-effects only.")
+
+(defmacro ht-aeach (form table)
+  "Anaphoric version of `ht-each'.
 For every key-value pair in TABLE, evaluate FORM with the
 variables key and value bound."
   `(ht-map (lambda (key value) ,form) ,table))

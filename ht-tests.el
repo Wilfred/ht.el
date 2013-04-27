@@ -86,6 +86,22 @@
     (should
      (equal total 3))))
 
+(ert-deftest ht-test-each ()
+  (let ((total 0))
+    (ht-each
+     (lambda (key value) (setq total (+ total value)))
+     (ht ("foo" 1) ("bar" 2)))
+    (should
+     (equal total 3))))
+
+(ert-deftest ht-test-aeach ()
+  (let ((total 0))
+    (ht-aeach
+     (setq total (+ total value))
+     (ht ("foo" 1) ("bar" 2)))
+    (should
+     (equal total 3))))
+
 (ert-deftest ht-test-from-alist ()
   (let* ((alist '(("key1" . "value1")))
          (test-table (ht-from-alist alist)))
