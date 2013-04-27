@@ -57,6 +57,18 @@ of all changes.
 
 * `ht-map` now returns a list.
 
+## Installation
+
+ht.el is availabe on [MELPA](http://melpa.milkbox.net/) and
+[Marmalade](http://marmalade-repo.org/).
+
+Add a package archive to your .emacs.d/init.el:
+
+    (require 'package)
+    (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+    
+then run `M-x package-install <RET> ht <RET>`
+
 ## Examples
 
 Creating a hash table and accessing it:
