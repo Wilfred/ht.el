@@ -47,6 +47,16 @@ ht.el offers:
 
 * [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on alists)
 
+## API changelog
+
+ht.el uses semantic versioning, so an incompatible API change will
+result in the major version increasing. See CHANGELOG.md for a history
+of all changes.
+
+### v1.0
+
+* `ht-map` now returns a list.
+
 ## Examples
 
 Creating a hash table and accessing it:
