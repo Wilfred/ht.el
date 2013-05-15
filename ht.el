@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 1.1
+;; Version: 1.2
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -116,18 +116,6 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
   (clrhash table)
   nil)
 
-(defun ht-keys (table)
-  "Return a list of all the keys in TABLE."
-  (ht-amap key table))
-
-(defun ht-values (table)
-  "Return a list of all the values in TABLE."
-  (ht-amap value table))
-
-(defun ht-items (table)
-  "Return a list of two-element lists '(key value) from TABLE."
-  (ht-amap (list key value) table))
-
 (defun ht-map (function table)
   "Apply FUNCTION to each key-value pair of TABLE, and make a list of the results.
 FUNCTION is called with two arguments, KEY and VALUE."
@@ -143,6 +131,18 @@ FUNCTION is called with two arguments, KEY and VALUE."
 For every key-value pair in TABLE, evaluate FORM with the
 variables KEY and VALUE bound."
   `(ht-map (lambda (key value) ,form) ,table))
+
+(defun ht-keys (table)
+  "Return a list of all the keys in TABLE."
+  (ht-amap key table))
+
+(defun ht-values (table)
+  "Return a list of all the values in TABLE."
+  (ht-amap value table))
+
+(defun ht-items (table)
+  "Return a list of two-element lists '(key value) from TABLE."
+  (ht-amap (list key value) table))
 
 (defalias 'ht-each 'maphash
   "Apply FUNCTION to each key-value pair of TABLE.

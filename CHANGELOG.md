@@ -1,3 +1,8 @@
+## v1.2
+
+* Fixed various `void-variable` crashes due to `ht-amap` only being
+  declared after its usage.
+
 ## v1.1
 
 * Added `ht-contains-p`.
