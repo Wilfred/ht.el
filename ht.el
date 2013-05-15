@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 1.2
+;; Version: 1.3
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -27,11 +27,11 @@
 
 ;;; Code:
 
-(require 'cl) ;; gensym
+(eval-when-compile (require 'cl)) ;; dolist
 
 (defmacro ht (&rest pairs)
   "Create a hash table with key-value bindings set according to PAIRS."
-  (let* ((table-symbol (gensym "ht-temp"))
+  (let* ((table-symbol (make-symbol "ht-temp"))
         (assignments
          (mapcar
           (lambda (pair) `(ht-set ,table-symbol ,@pair))

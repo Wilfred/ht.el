@@ -1,3 +1,7 @@
+## v1.3
+
+* Removed runtime dependency on `cl`.
+
 ## v1.2
 
 * Fixed various `void-variable` crashes due to `ht-amap` only being
