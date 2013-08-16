@@ -86,7 +86,7 @@ Errors if LIST doesn't contain an even number of elements."
   "Create a hash table with initial values according to PLIST."
   (let ((h (ht-create)))
     (dolist (pair (ht/group-pairs plist) h)
-      (let ((key (car pair))
+      (let ((key (substring (symbol-name (car pair)) 1))
             (value (cadr pair)))
         (ht-set h key value)))))
 
