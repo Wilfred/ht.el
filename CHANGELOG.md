@@ -1,3 +1,7 @@
+## v1.4
+
+* Added `ht-merge`.
+
 ## v1.3
 
 * Removed runtime dependency on `cl`.
