@@ -30,7 +30,10 @@
 (eval-when-compile (require 'cl)) ;; dolist
 
 (defmacro ht (&rest pairs)
-  "Create a hash table with key-value bindings set according to PAIRS."
+  "Create a hash table with the key-value pairs given.
+Keys are compared with `equal'.
+
+\(fn (KEY-1 VALUE-1) (KEY-2 VALUE-2) ...)"
   (let* ((table-symbol (make-symbol "ht-temp"))
         (assignments
          (mapcar
