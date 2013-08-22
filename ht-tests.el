@@ -28,6 +28,14 @@
       (list "bar" "foo")
       (sort (ht-keys test-table) 'string<)))))
 
+(ert-deftest ht-test-merge ()
+  (let ((table1 (ht ("foo" 1)))
+        (table2 (ht ("bar" 2))))
+    (should
+     (equal
+      (list "bar" "foo")
+      (sort (ht-keys (ht-merge table1 table2)) 'string<)))))
+
 (ert-deftest ht-test-create-non-default-test ()
   (let ((test-table (ht-create 'eq)))
     (should (equal (hash-table-test test-table) 'eq))))
