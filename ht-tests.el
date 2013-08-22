@@ -110,6 +110,16 @@
     (should
      (equal total 3))))
 
+(ert-deftest ht-test-aeach-nil ()
+  "ht-aeach should return nil"
+  (let ((total 0))
+    (should
+     (equal
+      (ht-aeach
+       (setq total (+ total value))
+       (ht ("foo" 1) ("bar" 2)))
+      nil))))
+
 (ert-deftest ht-test-from-alist ()
   (let* ((alist '(("key1" . "value1")))
          (test-table (ht-from-alist alist)))

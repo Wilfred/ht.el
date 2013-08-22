@@ -1,3 +1,8 @@
+## v1.5
+
+* `ht-aeach` now evaluates to `nil` as it should (use `ht-amap` if you
+  want the resulting hash table).
+
 ## v1.4
 
 * Added `ht-merge`.

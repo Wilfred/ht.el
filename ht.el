@@ -3,7 +3,7 @@
 ;; Copyright (C) 2013 Wilfred Hughes
 
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
-;; Version: 1.4
+;; Version: 1.5
 ;; Keywords: hash table, hash map, hash
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -162,7 +162,7 @@ Returns nil, used for side-effects only.")
   "Anaphoric version of `ht-each'.
 For every key-value pair in TABLE, evaluate FORM with the
 variables key and value bound."
-  `(ht-map (lambda (key value) ,form) ,table))
+  `(ht-each (lambda (key value) ,form) ,table))
 
 (defun ht-to-plist (table)
   "Return a flat list '(key1 value1 key2 value2...) from TABLE.
