@@ -178,6 +178,20 @@
     (should (-contains? results '("bar" 2)))
     (should (-contains? results '("qux" 4)))))
 
+(ert-deftest ht-test-reject ()
+  (let ((results
+         (ht-reject
+          (lambda (key value)
+            (= (% value 2) 0))
+          (ht
+           ("foo" 1)
+           ("bar" 2)
+           ("baz" 3)
+           ("qux" 4)))))
+    (should (= (length results) 2))
+    (should (-contains? results '("foo" 1)))
+    (should (-contains? results '("baz" 3)))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
