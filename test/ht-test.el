@@ -178,6 +178,20 @@
     (should (= (ht-get results "bar") 2))
     (should (= (ht-get results "qux") 4))))
 
+(ert-deftest ht-test-reject ()
+  (let ((results
+         (ht-reject
+          (lambda (key value)
+            (= (% value 2) 0))
+          (ht
+           ("foo" 1)
+           ("bar" 2)
+           ("baz" 3)
+           ("qux" 4)))))
+    (should (= (ht-size results) 2))
+    (should (= (ht-get results "foo") 1))
+    (should (= (ht-get results "baz") 3))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

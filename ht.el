@@ -217,5 +217,18 @@ FUNCTION is called with two arguments, KEY and VALUE."
      table)
     results))
 
+(defun ht-reject (function table)
+  "Return a hash table containing all entries in TABLE for which
+FUNCTION returns a falsy value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (let ((results (ht-create)))
+    (ht-each
+     (lambda (key value)
+       (unless (funcall function key value)
+         (ht-set results key value)))
+     table)
+    results))
+
 (provide 'ht)
 ;;; ht.el ends here
