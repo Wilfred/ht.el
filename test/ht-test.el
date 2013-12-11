@@ -221,6 +221,23 @@
       ("qux" 4)))
     "((\"qux\" . 4) (\"baz\" . 3) (\"bar\" . 2) (\"foo\" . 1))")))
 
+(ert-deftest ht-test-sort ()
+  (should
+   (equal
+    (ht-sort
+     (lambda (key-1 value-1 key-2 value-2)
+       (string< key-1 key-2))
+     (ht
+      ("foo" 1)
+      ("bar" 2)
+      ("baz" 3)
+      ("qux" 4)))
+    '(
+      ("bar" 2)
+      ("baz" 3)
+      ("foo" 1)
+      ("qux" 4)))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

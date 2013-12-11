@@ -245,5 +245,18 @@ FUNCTION is called with two arguments, KEY and VALUE."
   "Return string representation of TABLE."
   (prin1-to-string (ht-to-alist table)))
 
+(defun ht-sort (function table)
+  "Return a list containing all elements in TABLE sorted.
+
+FUNCTION is called with four arguments, KEY-1, VALUE-1, KEY-2 and
+VALUE-2."
+  (sort
+   (ht-map
+    (lambda (key value)
+      (list key value))
+    table)
+   (lambda (a b)
+     (apply function (append a b)))))
+
 (provide 'ht)
 ;;; ht.el ends here
