@@ -1,4 +1,5 @@
 (require 'f)
+(require 'dash)
 
 (defvar ht-test/test-path
   (f-parent (f-this-file)))

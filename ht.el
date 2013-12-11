@@ -203,5 +203,18 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
 (defun ht-empty-p (table)
   "Return true if the actual number of entries in TABLE is zero."
   (zerop (ht-size table)))
+
+(defun ht-select (function table)
+  "Return a list containing all elements in TABLE for which
+FUNCTION returns a thruty value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (let (results)
+    (ht-each
+     (lambda (key value)
+       (when (funcall function key value)
+         (push (list key value) results)))
+     table)
+    results))
 (provide 'ht)
 ;;; ht.el ends here
