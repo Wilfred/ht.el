@@ -241,5 +241,9 @@ FUNCTION is called with two arguments, KEY and VALUE."
    table)
   nil)
 
+(defun ht-to-s (table)
+  "Return string representation of TABLE."
+  (prin1-to-string (ht-to-alist table)))
+
 (provide 'ht)
 ;;; ht.el ends here

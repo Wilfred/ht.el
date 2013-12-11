@@ -210,6 +210,17 @@
     (should-not (ht-get table "bar"))
     (should-not (ht-get table "qux"))))
 
+(ert-deftest ht-test-to-s ()
+  (should
+   (equal
+    (ht-to-s
+     (ht
+      ("foo" 1)
+      ("bar" 2)
+      ("baz" 3)
+      ("qux" 4)))
+    "((\"qux\" . 4) (\"baz\" . 3) (\"bar\" . 2) (\"foo\" . 1))")))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
