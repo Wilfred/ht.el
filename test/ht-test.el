@@ -158,6 +158,11 @@
   (should (= (ht-size (ht ("foo" "bar")
                           ("baz" "qux"))) 2)))
 
+(ert-deftest ht-test-empty ()
+  (should (ht-empty-p (ht)))
+  (should-not (ht-empty-p (ht ("foo" "bar"))))
+  (should-not (ht-empty-p (ht ("foo" "bar")
+                              ("baz" "qux")))))
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
