@@ -192,6 +192,24 @@
     (should (-contains? results '("foo" 1)))
     (should (-contains? results '("baz" 3)))))
 
+(ert-deftest ht-test-delete-if ()
+  (let* ((table (ht
+                 ("foo" 1)
+                 ("bar" 2)
+                 ("baz" 3)
+                 ("qux" 4)))
+         (results
+          (ht-delete-if
+           (lambda (key value)
+             (= (% value 2) 0))
+           table)))
+    (should-not results)
+    (should (= (ht-size table) 2))
+    (should (= (ht-get table "foo") 1))
+    (should (= (ht-get table "baz") 3))
+    (should-not (ht-get table "bar"))
+    (should-not (ht-get table "qux"))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

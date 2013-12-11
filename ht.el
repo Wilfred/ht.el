@@ -229,5 +229,17 @@ FUNCTION is called with two arguments, KEY and VALUE."
          (push (list key value) results)))
      table)
     results))
+
+(defun ht-delete-if (function table)
+  "Delete entries from TABLE for which FUNCTION returns a falsy value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (ht-each
+   (lambda (key value)
+     (when (funcall function key value)
+       (remhash key table)))
+   table)
+  nil)
+
 (provide 'ht)
 ;;; ht.el ends here
