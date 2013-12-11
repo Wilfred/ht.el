@@ -23,6 +23,13 @@ The missing hash table library for Emacs.
 * `ht-to-plist` `(table)`
 * `ht-p` `(table-or-object)`
 * `ht-contains-p` `(table key)`
+* `ht-size` `(table)`
+* `ht-empty-p` `(table)`
+* `ht-select` `(function table)`
+* `ht-reject` `(function table)`
+* `ht-delete-if` `(function table)`
+* `ht-to-s` `(table)`
+* `ht-sort` `(table)`
 
 ## Macros
 

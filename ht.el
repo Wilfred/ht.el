@@ -196,5 +196,67 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
   "Return 't if TABLE contains KEY."
   (not (eq (ht-get table key 'ht--not-found) 'ht--not-found)))
 
+(defun ht-size (table)
+  "Return the actual number of entries in TABLE."
+  (hash-table-count table))
+
+(defun ht-empty-p (table)
+  "Return true if the actual number of entries in TABLE is zero."
+  (zerop (ht-size table)))
+
+(defun ht-select (function table)
+  "Return a list containing all elements in TABLE for which
+FUNCTION returns a thruty value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (let (results)
+    (ht-each
+     (lambda (key value)
+       (when (funcall function key value)
+         (push (list key value) results)))
+     table)
+    results))
+
+(defun ht-reject (function table)
+  "Return a list containing all elements in TABLE for which
+FUNCTION returns a falsy value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (let (results)
+    (ht-each
+     (lambda (key value)
+       (unless (funcall function key value)
+         (push (list key value) results)))
+     table)
+    results))
+
+(defun ht-delete-if (function table)
+  "Delete entries from TABLE for which FUNCTION returns a falsy value.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (ht-each
+   (lambda (key value)
+     (when (funcall function key value)
+       (remhash key table)))
+   table)
+  nil)
+
+(defun ht-to-s (table)
+  "Return string representation of TABLE."
+  (prin1-to-string (ht-to-alist table)))
+
+(defun ht-sort (function table)
+  "Return a list containing all elements in TABLE sorted.
+
+FUNCTION is called with four arguments, KEY-1, VALUE-1, KEY-2 and
+VALUE-2."
+  (sort
+   (ht-map
+    (lambda (key value)
+      (list key value))
+    table)
+   (lambda (a b)
+     (apply function (append a b)))))
+
 (provide 'ht)
 ;;; ht.el ends here

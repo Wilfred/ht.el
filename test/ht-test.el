@@ -1,6 +1,3 @@
-(require 'ert)
-(require 'ht)
-
 (ert-deftest ht-test-ht ()
   (let ((test-table (ht (1 2) ("foo" (1+ 2)))))
     (should (and (member 1 (ht-keys test-table))
@@ -154,6 +151,92 @@
 (ert-deftest ht-test-contains-p ()
   (should (ht-contains-p (ht ("key" nil)) "key"))
   (should-not (ht-contains-p (ht) "key")))
+
+(ert-deftest ht-test-size ()
+  (should (= (ht-size (ht)) 0))
+  (should (= (ht-size (ht ("foo" "bar"))) 1))
+  (should (= (ht-size (ht ("foo" "bar")
+                          ("baz" "qux"))) 2)))
+
+(ert-deftest ht-test-empty ()
+  (should (ht-empty-p (ht)))
+  (should-not (ht-empty-p (ht ("foo" "bar"))))
+  (should-not (ht-empty-p (ht ("foo" "bar")
+                              ("baz" "qux")))))
+
+(ert-deftest ht-test-select ()
+  (let ((results
+         (ht-select
+          (lambda (key value)
+            (= (% value 2) 0))
+          (ht
+           ("foo" 1)
+           ("bar" 2)
+           ("baz" 3)
+           ("qux" 4)))))
+    (should (= (length results) 2))
+    (should (-contains? results '("bar" 2)))
+    (should (-contains? results '("qux" 4)))))
+
+(ert-deftest ht-test-reject ()
+  (let ((results
+         (ht-reject
+          (lambda (key value)
+            (= (% value 2) 0))
+          (ht
+           ("foo" 1)
+           ("bar" 2)
+           ("baz" 3)
+           ("qux" 4)))))
+    (should (= (length results) 2))
+    (should (-contains? results '("foo" 1)))
+    (should (-contains? results '("baz" 3)))))
+
+(ert-deftest ht-test-delete-if ()
+  (let* ((table (ht
+                 ("foo" 1)
+                 ("bar" 2)
+                 ("baz" 3)
+                 ("qux" 4)))
+         (results
+          (ht-delete-if
+           (lambda (key value)
+             (= (% value 2) 0))
+           table)))
+    (should-not results)
+    (should (= (ht-size table) 2))
+    (should (= (ht-get table "foo") 1))
+    (should (= (ht-get table "baz") 3))
+    (should-not (ht-get table "bar"))
+    (should-not (ht-get table "qux"))))
+
+(ert-deftest ht-test-to-s ()
+  (should
+   (equal
+    (ht-to-s
+     (ht
+      ("foo" 1)
+      ("bar" 2)
+      ("baz" 3)
+      ("qux" 4)))
+    "((\"qux\" . 4) (\"baz\" . 3) (\"bar\" . 2) (\"foo\" . 1))")))
+
+(ert-deftest ht-test-sort ()
+  (should
+   (equal
+    (ht-sort
+     (lambda (key-1 value-1 key-2 value-2)
+       (string< key-1 key-2))
+     (ht
+      ("foo" 1)
+      ("bar" 2)
+      ("baz" 3)
+      ("qux" 4)))
+    '(
+      ("bar" 2)
+      ("baz" 3)
+      ("foo" 1)
+      ("qux" 4)))))
 
 (defun ht-run-tests ()
   (interactive)
