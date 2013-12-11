@@ -152,6 +152,12 @@
   (should (ht-contains-p (ht ("key" nil)) "key"))
   (should-not (ht-contains-p (ht) "key")))
 
+(ert-deftest ht-test-size ()
+  (should (= (ht-size (ht)) 0))
+  (should (= (ht-size (ht ("foo" "bar"))) 1))
+  (should (= (ht-size (ht ("foo" "bar")
+                          ("baz" "qux"))) 2)))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
