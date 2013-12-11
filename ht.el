@@ -196,5 +196,8 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
   "Return 't if TABLE contains KEY."
   (not (eq (ht-get table key 'ht--not-found) 'ht--not-found)))
 
+(defun ht-size (table)
+  "Return the actual number of entries in TABLE."
+  (hash-table-count table))
 (provide 'ht)
 ;;; ht.el ends here
