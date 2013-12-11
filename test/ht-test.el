@@ -1,6 +1,3 @@
-(require 'ert)
-(require 'ht)
-
 (ert-deftest ht-test-ht ()
   (let ((test-table (ht (1 2) ("foo" (1+ 2)))))
     (should (and (member 1 (ht-keys test-table))
