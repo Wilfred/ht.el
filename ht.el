@@ -199,5 +199,9 @@ inverse of `ht-from-alist'.  The following is not guaranteed:
 (defun ht-size (table)
   "Return the actual number of entries in TABLE."
   (hash-table-count table))
+
+(defun ht-empty? (table)
+  "Return true if the actual number of entries in TABLE is zero."
+  (zerop (ht-size table)))
 (provide 'ht)
 ;;; ht.el ends here
