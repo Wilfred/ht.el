@@ -163,6 +163,21 @@
   (should-not (ht-empty? (ht ("foo" "bar"))))
   (should-not (ht-empty? (ht ("foo" "bar")
                               ("baz" "qux")))))
+
+(ert-deftest ht-test-select ()
+  (let ((results
+         (ht-select
+          (lambda (key value)
+            (= (% value 2) 0))
+          (ht
+           ("foo" 1)
+           ("bar" 2)
+           ("baz" 3)
+           ("qux" 4)))))
+    (should (= (ht-size results) 2))
+    (should (= (ht-get results "bar") 2))
+    (should (= (ht-get results "qux") 4))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
