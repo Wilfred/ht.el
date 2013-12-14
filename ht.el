@@ -241,5 +241,17 @@ FUNCTION is called with two arguments, KEY and VALUE."
    table)
   nil)
 
+(defun ht-find (function table)
+  "Return (key, value) from TABLE for which FUNCTION returns a truthy value.
+Return nil otherwise.
+
+FUNCTION is called with two arguments, KEY and VALUE."
+  (catch 'break
+    (ht-each
+     (lambda (key value)
+       (when (funcall function key value)
+         (throw 'break (list key value))))
+     table)))
+
 (provide 'ht)
 ;;; ht.el ends here

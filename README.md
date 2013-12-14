@@ -28,6 +28,7 @@ The missing hash table library for Emacs.
 * `ht-select` `(function table)`
 * `ht-reject` `(function table)`
 * `ht-delete-if` `(function table)`
+* `ht-find` `(function table)`
 
 ## Macros
 
