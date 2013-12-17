@@ -1,3 +1,12 @@
+### v1.6
+
+* Added `ht-reject` and `ht-select`
+* Added `ht-delete-if`
+* Added `ht-find`
+* Added `ht-empty?` and `ht-size`
+
+Also added Travis configuration.
+
 ## v1.5
 
 * `ht-aeach` now evaluates to `nil` as it should (use `ht-amap` if you

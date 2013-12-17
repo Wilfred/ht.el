@@ -95,8 +95,10 @@ then run `M-x package-install <RET> ht <RET>`
 ## API changelog
 
 ht.el uses semantic versioning, so an incompatible API change will
-result in the major version increasing. See CHANGELOG.md for a history
-of all changes.
+result in the major version increasing. See
+[CHANGELOG.md](CHANGELOG.md) for a history of all changes.
+
+The following changes were backwards incompatible:
 
 ### v1.0
 
