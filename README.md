@@ -1,38 +1,86 @@
+**Table of Contents** *generated with [autotoc](https://github.com/Wilfred/autotoc)*
+
+- [ht.el](#htel)
+  - [Functions](#functions)
+    - [Return a hash table](#return-a-hash-table)
+    - [Accessing the hash table](#accessing-the-hash-table)
+    - [Mutating the hash table](#mutating-the-hash-table)
+    - [Iterating over the hash table](#iterating-over-the-hash-table)
+    - [Predicates](#predicates)
+    - [Converting from a hash table](#converting-from-a-hash-table)
+    - [Converting to a hash table](#converting-to-a-hash-table)
+  - [Macros](#macros)
+    - [Returning a hash table](#returning-a-hash-table)
+    - [Iterating over the hash table (anaphoric)](#iterating-over-the-hash-table-anaphoric)
+  - [Examples](#examples)
+  - [Why?](#why)
+    - [Similar libraries](#similar-libraries)
+  - [Installation](#installation)
+  - [API changelog](#api-changelog)
+    - [v1.0](#v10)
+  - [Running tests](#running-tests)
+  - [What's an alist/plist?](#whats-an-alistplist)
+
 # ht.el
 
 The missing hash table library for Emacs.
 
 ## Functions
 
+### Return a hash table
+
 * `ht-create` `(test?)`
-* `ht-get` `(table key default?)`
-* `ht-set` `(table key value)`
-* `ht-update` `(table table)`
 * `ht-merge` `(&rest tables)`
-* `ht-remove` `(table key)`
-* `ht-clear` `(table)`
+* `ht-copy` `(table)`
+* `ht-select` `(function table)`
+* `ht-reject` `(function table)`
+
+### Accessing the hash table
+
+* `ht-get` `(table key default?)`
 * `ht-keys` `(table)`
 * `ht-values` `(table)`
 * `ht-items` `(table)`
+* `ht-find` `(function table)`
+* `ht-size` `(table)`
+
+### Mutating the hash table
+
+* `ht-set` `(table key value)`
+* `ht-update` `(table table)`
+* `ht-remove` `(table key)`
+* `ht-clear` `(table)`
+* `ht-delete-if` `(function table)`
+
+### Iterating over the hash table
+
 * `ht-map` `(function table)`
 * `ht-each` `(function table)`
-* `ht-copy` `(table)`
-* `ht-from-alist` `(alist)`
-* `ht-from-plist` `(plist)`
-* `ht-to-alist` `(table)`
-* `ht-to-plist` `(table)`
+
+### Predicates
+
 * `ht-p` `(table-or-object)`
 * `ht-contains-p` `(table key)`
-* `ht-size` `(table)`
 * `ht-empty?` `(table)`
-* `ht-select` `(function table)`
-* `ht-reject` `(function table)`
-* `ht-delete-if` `(function table)`
-* `ht-find` `(function table)`
+
+### Converting from a hash table
+
+* `ht-to-alist` `(table)`
+* `ht-to-plist` `(table)`
+
+### Converting to a hash table
+
+* `ht-from-alist` `(alist)`
+* `ht-from-plist` `(plist)`
 
 ## Macros
 
+### Returning a hash table
+
 * `ht` `(&rest pairs)`
+
+### Iterating over the hash table (anaphoric)
+
 * `ht-amap` `(form table)`
 * `ht-aeach` `(form table)`
 
