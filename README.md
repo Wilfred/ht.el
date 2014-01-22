@@ -45,11 +45,11 @@ The missing hash table library for Emacs.
 
 ### Mutating the hash table
 
-* `ht-set` `(table key value)`
-* `ht-update` `(table table)`
-* `ht-remove` `(table key)`
-* `ht-clear` `(table)`
-* `ht-delete-if` `(function table)`
+* `ht-set!` `(table key value)`
+* `ht-update!` `(table table)`
+* `ht-remove!` `(table key)`
+* `ht-clear!` `(table)`
+* `ht-reject!` `(function table)`
 
 ### Iterating over the hash table
 
@@ -58,19 +58,19 @@ The missing hash table library for Emacs.
 
 ### Predicates
 
-* `ht-p` `(table-or-object)`
-* `ht-contains-p` `(table key)`
+* `ht?` `(table-or-object)`
+* `ht-contains?` `(table key)`
 * `ht-empty?` `(table)`
 
 ### Converting from a hash table
 
-* `ht-to-alist` `(table)`
-* `ht-to-plist` `(table)`
+* `ht->alist` `(table)`
+* `ht->plist` `(table)`
 
 ### Converting to a hash table
 
-* `ht-from-alist` `(alist)`
-* `ht-from-plist` `(plist)`
+* `ht<-alist` `(alist)`
+* `ht<-plist` `(plist)`
 
 ## Macros
 
@@ -100,8 +100,8 @@ This could be alternatively written as:
 
     (defun say-hello (name)
       (let ((greetings (ht-create)))
-        (ht-set greetings "Bob" "Hey Bob!")
-        (ht-set greetings "Chris" "Hi Chris!")
+        (ht-set! greetings "Bob" "Hey Bob!")
+        (ht-set! greetings "Chris" "Hi Chris!")
         (ht-get greetings name "Hello stranger!")))
 
 ## Why?
@@ -170,7 +170,7 @@ of items. It looks like this:
      key2 value2
      key3 value3)
 
-Both of these are slow. ht.el provides `ht-from-alist` and
-`ht-from-plist` to help you convert to hash tables. If you need to
-work with an alist or plist, use the functions `ht-to-alist` and
-`ht-to-plist` to convert an hash table to those formats.
+Both of these are slow. ht.el provides `ht<-alist` and
+`ht<-plist` to help you convert to hash tables. If you need to
+work with an alist or plist, use the functions `ht->alist` and
+`ht->plist` to convert an hash table to those formats.
