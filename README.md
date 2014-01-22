@@ -16,8 +16,7 @@
   - [Why?](#why)
     - [Similar libraries](#similar-libraries)
   - [Installation](#installation)
-  - [API changelog](#api-changelog)
-    - [v1.0](#v10)
+  - [Changelog](#changelog)
   - [Running tests](#running-tests)
   - [What's an alist/plist?](#whats-an-alistplist)
 
@@ -140,17 +139,11 @@ Add a package archive to your .emacs.d/init.el:
     
 then run `M-x package-install <RET> ht <RET>`
 
-## API changelog
+## Changelog
 
 ht.el uses semantic versioning, so an incompatible API change will
 result in the major version increasing. See
 [CHANGELOG.md](CHANGELOG.md) for a history of all changes.
-
-The following changes were backwards incompatible:
-
-### v1.0
-
-* `ht-map` now returns a list.
 
 ## Running tests
 
