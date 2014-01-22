@@ -112,7 +112,8 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
 
 (defun ht-merge (&rest tables)
   "Crete a new tables that includes all the key-value pairs from TABLES.
-If multiple have tables have the same key, the key-value pair is used."
+If multiple have tables have the same key, the value in the last
+table is used."
   (let ((merged (ht-create)))
     (mapc (lambda (table) (ht-update merged table)) tables)
     merged))
