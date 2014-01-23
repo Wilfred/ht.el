@@ -24,6 +24,8 @@
 
 The missing hash table library for Emacs.
 
+[![Build Status](https://travis-ci.org/Wilfred/ht.el.png?branch=master)](https://travis-ci.org/Wilfred/ht.el)
+
 ## Functions
 
 ### Return a hash table
