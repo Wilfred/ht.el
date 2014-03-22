@@ -127,7 +127,9 @@ ht.el offers:
 
 ### Similar libraries
 
-* [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on alists)
+* [kv.el](https://github.com/nicferrier/emacs-kv) (focuses more on
+  alists)
+* [mon-hash-utils](http://www.emacswiki.org/emacs/mon-hash-utils.el)
 
 ## Installation
 
