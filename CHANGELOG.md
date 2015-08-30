@@ -1,3 +1,8 @@
+## on master branch
+
+* `ht<-alist` and `ht<-plist` gained an optional argument `test` to
+specify the equality predicate.
+
 ## v2.0 -- API Change
 
 Functions names have been changed to be more explicit and consistent.
