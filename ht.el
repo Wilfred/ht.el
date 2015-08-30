@@ -54,8 +54,9 @@ user-supplied test created via `define-hash-table-test'."
 (defun ht<-alist (alist &optional test)
   "Create a hash table with initial values according to ALIST.
 
-Optional argument TEST has the same meaning as for `ht-create'
-and defaults to `equal'."
+TEST indicates the function used to compare the hash
+keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
+user-supplied test created via `define-hash-table-test'."
   (let ((h (ht-create test)))
     ;; the first key-value pair in an alist gets precedence, so we
     ;; start from the end of the list:
@@ -93,8 +94,9 @@ Errors if LIST doesn't contain an even number of elements."
 (defun ht<-plist (plist &optional test)
   "Create a hash table with initial values according to PLIST.
 
-Optional argument TEST has the same meaning as for `ht-create'
-and defaults to `equal'."
+TEST indicates the function used to compare the hash
+keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
+user-supplied test created via `define-hash-table-test'."
   (let ((h (ht-create test)))
     (dolist (pair (ht/group-pairs plist) h)
       (let ((key (car pair))
