@@ -72,8 +72,8 @@ The missing hash table library for Emacs.
 
 ### Converting to a hash table
 
-* `ht<-alist` `(alist)`
-* `ht<-plist` `(plist)`
+* `ht<-alist` `(alist test?)`
+* `ht<-plist` `(plist test?)`
 
 ## Macros
 
