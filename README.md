@@ -134,13 +134,13 @@ ht.el offers:
 
 ## Installation
 
-ht.el is availabe on [MELPA](http://melpa.milkbox.net/) and
+ht.el is available on [MELPA](https://melpa.org/) and
 [Marmalade](http://marmalade-repo.org/).
 
 Add a package archive to your .emacs.d/init.el:
 
     (require 'package)
-    (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
     
 then run `M-x package-install <RET> ht <RET>`
 
