@@ -1,25 +1,3 @@
-**Table of Contents** *generated with [autotoc](https://github.com/Wilfred/autotoc)*
-
-- [ht.el](#htel)
-  - [Functions](#functions)
-    - [Return a hash table](#return-a-hash-table)
-    - [Accessing the hash table](#accessing-the-hash-table)
-    - [Mutating the hash table](#mutating-the-hash-table)
-    - [Iterating over the hash table](#iterating-over-the-hash-table)
-    - [Predicates](#predicates)
-    - [Converting from a hash table](#converting-from-a-hash-table)
-    - [Converting to a hash table](#converting-to-a-hash-table)
-  - [Macros](#macros)
-    - [Returning a hash table](#returning-a-hash-table)
-    - [Iterating over the hash table (anaphoric)](#iterating-over-the-hash-table-anaphoric)
-  - [Examples](#examples)
-  - [Why?](#why)
-    - [Similar libraries](#similar-libraries)
-  - [Installation](#installation)
-  - [Changelog](#changelog)
-  - [Running tests](#running-tests)
-  - [What's an alist/plist?](#whats-an-alistplist)
-
 # ht.el
 
 The missing hash table library for Emacs.
@@ -27,6 +5,31 @@ The missing hash table library for Emacs.
 [![MELPA](http://melpa.org/packages/ht-badge.svg)](http://melpa.org/#/ht)
 [![MELPA Stable](http://stable.melpa.org/packages/ht-badge.svg)](http://stable.melpa.org/#/ht)
 [![Build Status](https://travis-ci.org/Wilfred/ht.el.png?branch=master)](https://travis-ci.org/Wilfred/ht.el)
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [ht.el](#htel)
+    - [Functions](#functions)
+        - [Return a hash table](#return-a-hash-table)
+        - [Accessing the hash table](#accessing-the-hash-table)
+        - [Mutating the hash table](#mutating-the-hash-table)
+        - [Iterating over the hash table](#iterating-over-the-hash-table)
+        - [Predicates](#predicates)
+        - [Converting from a hash table](#converting-from-a-hash-table)
+        - [Converting to a hash table](#converting-to-a-hash-table)
+    - [Macros](#macros)
+        - [Returning a hash table](#returning-a-hash-table)
+        - [Iterating over the hash table (anaphoric)](#iterating-over-the-hash-table-anaphoric)
+    - [Examples](#examples)
+    - [Why?](#why)
+        - [Similar libraries](#similar-libraries)
+    - [Installation](#installation)
+    - [Changelog](#changelog)
+    - [Running tests](#running-tests)
+    - [What's an alist/plist?](#whats-an-alistplist)
+
+<!-- markdown-toc end -->
 
 ## Functions
 
