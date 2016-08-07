@@ -22,9 +22,9 @@
 
 ;;; Commentary:
 
-;; The missing hash table utility library for Emacs.
+;; The missing hash table library for Emacs.
 ;;
-;; See documentation on https://github.com/Wilfred/ht.el
+;; See documentation at https://github.com/Wilfred/ht.el
 
 ;;; Code:
 
