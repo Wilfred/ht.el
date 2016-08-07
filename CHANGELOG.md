@@ -2,6 +2,7 @@
 
 * `ht<-alist` and `ht<-plist` gained an optional argument `test` to
 specify the equality predicate.
+* Added `ht-equal?`.
 
 ## v2.0 -- API Change
 

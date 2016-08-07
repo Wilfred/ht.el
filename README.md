@@ -67,6 +67,7 @@ The missing hash table library for Emacs.
 
 * `ht?` `(table-or-object)`
 * `ht-contains?` `(table key)`
+* `ht-equal?` `(table1 table2)`
 * `ht-empty?` `(table)`
 
 ### Converting from a hash table

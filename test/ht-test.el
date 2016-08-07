@@ -234,6 +234,18 @@
            table)))
     (should (equal result nil))))
 
+(ert-deftest ht-test-equal ()
+  ;; Same keys and values.
+  (should (ht-equal-p (ht) (ht)))
+  (should (ht-equal-p (ht (1 2)) (ht (1 2))))
+  ;; Different values.
+  (should (not (ht-equal-p (ht (1 2)) (ht (1 3)))))
+  ;; Different keys.
+  (should (not (ht-equal-p (ht (1 2)) (ht (2 2)))))
+  ;; Different amount of keys.
+  (should (not (ht-equal-p (ht (1 2)) (ht (1 2) (3 4)))))
+  (should (not (ht-equal-p (ht (1 2) (3 4)) (ht (1 2))))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))

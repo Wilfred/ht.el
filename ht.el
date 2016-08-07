@@ -5,6 +5,7 @@
 ;; Author: Wilfred Hughes <me@wilfred.me.uk>
 ;; Version: 2.0
 ;; Keywords: hash table, hash map, hash
+;; Package-Requires: ((dash "2.12.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -26,6 +27,8 @@
 ;; See documentation on https://github.com/Wilfred/ht.el
 
 ;;; Code:
+
+(require 'dash)
 
 (defmacro ht (&rest pairs)
   "Create a hash table with the key-value pairs given.
@@ -281,6 +284,20 @@ FUNCTION is called with two arguments, KEY and VALUE."
        (when (funcall function key value)
          (throw 'break (list key value))))
      table)))
+
+(defun ht-equal? (table1 table2)
+  "Return t if TABLE1 and TABLE2 have the same keys and values.
+Does not compare equality predicates."
+  (let ((keys1 (ht-keys table1))
+        (keys2 (ht-keys table2))
+        (sentinel (make-symbol "ht-sentinel")))
+    (and (equal (length keys1) (length keys2))
+         (--all?
+          (equal (ht-get table1 it)
+                 (ht-get table2 it sentinel))
+          keys1))))
+
+(defalias 'ht-equal-p 'ht-equal?)
 
 (provide 'ht)
 ;;; ht.el ends here
