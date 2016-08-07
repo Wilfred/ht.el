@@ -1,4 +1,4 @@
-## on master branch
+## v2.1
 
 * `ht<-alist` and `ht<-plist` gained an optional argument `test` to
 specify the equality predicate.
