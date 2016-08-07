@@ -33,10 +33,10 @@ Keys are compared with `equal'.
 
 \(fn (KEY-1 VALUE-1) (KEY-2 VALUE-2) ...)"
   (let* ((table-symbol (make-symbol "ht-temp"))
-        (assignments
-         (mapcar
-          (lambda (pair) `(ht-set! ,table-symbol ,@pair))
-          pairs)))
+         (assignments
+          (mapcar
+           (lambda (pair) `(ht-set! ,table-symbol ,@pair))
+           pairs)))
     `(let ((,table-symbol (ht-create)))
        ,@assignments
        ,table-symbol)))
