@@ -95,22 +95,26 @@ The missing hash table library for Emacs.
 
 Creating a hash table and accessing it:
 
-    (require 'ht)
+``` emacs-lisp
+(require 'ht)
 
-    (defun say-hello (name)
-      (let ((greetings (ht ("Bob" "Hey bob!")
-                           ("Chris" "Hi Chris!"))))
-        (ht-get greetings name "Hello stranger!")))
+(defun say-hello (name)
+  (let ((greetings (ht ("Bob" "Hey bob!")
+                       ("Chris" "Hi Chris!"))))
+    (ht-get greetings name "Hello stranger!")))
+```
 
 This could be alternatively written as:
 
-    (require 'ht)
+``` emacs-lisp
+(require 'ht)
 
-    (defun say-hello (name)
-      (let ((greetings (ht-create)))
-        (ht-set! greetings "Bob" "Hey Bob!")
-        (ht-set! greetings "Chris" "Hi Chris!")
-        (ht-get greetings name "Hello stranger!")))
+(defun say-hello (name)
+  (let ((greetings (ht-create)))
+    (ht-set! greetings "Bob" "Hey Bob!")
+    (ht-set! greetings "Chris" "Hi Chris!")
+    (ht-get greetings name "Hello stranger!")))
+```
 
 ## Why?
 
@@ -139,15 +143,17 @@ ht.el offers:
 
 ## Installation
 
-ht.el is available on [MELPA](https://melpa.org/) and
+ht.el is available on [MELPA](https://melpa.org/) (recommended) and
 [Marmalade](http://marmalade-repo.org/).
 
-Add a package archive to your .emacs.d/init.el:
+Add MELPA to your .emacs.d/init.el:
 
-    (require 'package)
-    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-    
-then run `M-x package-install <RET> ht <RET>`
+``` emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+```
+
+then run `M-x package-install <RET> ht <RET>`.
 
 ## Changelog
 
