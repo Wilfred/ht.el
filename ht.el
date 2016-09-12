@@ -68,30 +68,6 @@ user-supplied test created via `define-hash-table-test'."
 
 (defalias 'ht-from-alist 'ht<-alist)
 
-;; based on the excellent -partition from dash.el, but we aim to be self-contained
-(defun ht/group-pairs (list)
-  "Return a new list with the items in LIST grouped into pairs.
-Errors if LIST doesn't contain an even number of elements."
-  (let ((result)
-        (sublist)
-        (len 0))
-
-    (while list
-      ;; take the head of LIST and push onto SUBLIST
-      (setq sublist (cons (car list) sublist))
-      (setq list (cdr list))
-      
-      (setq len (1+ len))
-
-      (when (= len 2)
-        ;; push this two-item list onto RESULT
-        (setq result (cons (nreverse sublist) result))
-        (setq sublist nil)
-        (setq len 0)))
-    
-    (when sublist (error "Expected an even number of elements"))
-    (nreverse result)))
-
 (defun ht<-plist (plist &optional test)
   "Create a hash table with initial values according to PLIST.
 
@@ -99,7 +75,7 @@ TEST indicates the function used to compare the hash
 keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
   (let ((h (ht-create test)))
-    (dolist (pair (ht/group-pairs plist) h)
+    (dolist (pair (-partition 2 plist) h)
       (let ((key (car pair))
             (value (cadr pair)))
         (ht-set! h key value)))))
