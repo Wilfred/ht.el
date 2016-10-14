@@ -162,6 +162,14 @@ For every key-value pair in TABLE, evaluate FORM with the
 variables key and value bound."
   `(ht-each (lambda (key value) ,form) ,table))
 
+(defun ht-select-keys (table keys)
+  "Return a new TABLE according to specific KEYS."
+  (let (result)
+    (setq result (make-hash-table))
+    (dolist (key keys result)
+      (if (gethash key table)
+          (puthash key (gethash key table) result)))))
+
 (defun ht->plist (table)
   "Return a flat list '(key1 value1 key2 value2...) from TABLE.
 
