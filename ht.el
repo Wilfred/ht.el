@@ -167,7 +167,7 @@ variables key and value bound."
   (let (result)
     (setq result (make-hash-table))
     (dolist (key keys result)
-      (if (gethash key table)
+      (if (not (equal (gethash key table 'key-not-found) 'key-not-found))
           (puthash key (gethash key table) result)))))
 
 (defun ht->plist (table)
