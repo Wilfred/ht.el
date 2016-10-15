@@ -120,9 +120,8 @@
       nil))))
 
 (ert-deftest ht-test-select-keys-empty ()
-  "hg-select-keys should return an empty table if the keys list is empty"
+  "ht-select-keys should return an empty table if the keys list is empty"
   (let ((table (ht (:foo 1) (:bar 3))))
-    ;; (ht-select-keys table '()))
     (should (ht-empty? (ht-select-keys table '())))))
 
 (ert-deftest ht-test-select-keys ()
@@ -130,7 +129,7 @@
   (let ((table (ht (:foo 1) (:bar 3))))
     (should (equal (ht-size (ht-select-keys table '(:foo :bar))) 2))))
 
-(ert-deftest hg-test-select-keys-not-found ()
+(ert-deftest ht-test-select-keys-not-found ()
   "if the key is not found, it doesn't occur in the returned table"
   (let ((table (ht (:foo 1) (:bar 3))))
     (should (equal (ht-size (ht-select-keys table '(:foo :baz))) 1))))
