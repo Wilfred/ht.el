@@ -163,7 +163,7 @@ variables key and value bound."
   `(ht-each (lambda (key value) ,form) ,table))
 
 (defun ht-select-keys (table keys)
-  "Return a new TABLE according to specific KEYS."
+  "Return a copy of TABLE with only the specified KEYS."
   (let (result)
     (setq result (make-hash-table))
     (dolist (key keys result)
