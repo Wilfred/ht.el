@@ -40,6 +40,7 @@ The missing hash table library for Emacs.
 * `ht-copy` `(table)`
 * `ht-select` `(function table)`
 * `ht-reject` `(function table)`
+* `ht-select-keys` `(table keys)`
 
 ### Accessing the hash table
 
