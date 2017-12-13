@@ -44,6 +44,13 @@ Keys are compared with `equal'.
        ,@assignments
        ,table-symbol)))
 
+(defsubst ht-set! (table key value)
+  "Associate KEY in TABLE with VALUE."
+  (puthash key value table)
+  nil)
+
+(defalias 'ht-set 'ht-set!)
+
 (defsubst ht-create (&optional test)
   "Create an empty hash table.
 
@@ -94,13 +101,6 @@ for the final key, which may return any value."
   (if (cdr keys)
       (apply #'ht-get* (ht-get table (car keys)) (cdr keys))
     (ht-get table (car keys))))
-
-(defsubst ht-set! (table key value)
-  "Associate KEY in TABLE with VALUE."
-  (puthash key value table)
-  nil)
-
-(defalias 'ht-set 'ht-set!)
 
 (defun ht-update! (table from-table)
   "Update TABLE according to every key-value pair in FROM-TABLE."
