@@ -165,6 +165,11 @@
          (test-table (ht-from-plist plist)))
     (should (equal (ht-items test-table) '(("key1" "value1"))))))
 
+(ert-deftest ht-test-from-plist-masked-values ()
+  (let* ((plist '("key1" "value1" "key2" "value2" "key1" "value3"))
+         (test-table (ht-from-plist plist)))
+    (should (equal (ht-get test-table "key1") "value1"))))
+
 (ert-deftest ht-test-to-alist ()
   (let* ((alist '(("key1" . "value1") ("key2" . "value2")))
          (test-table (ht-from-alist alist)))

@@ -82,7 +82,7 @@ TEST indicates the function used to compare the hash
 keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
   (let ((h (ht-create test)))
-    (dolist (pair (-partition 2 plist) h)
+    (dolist (pair (nreverse (-partition 2 plist)) h)
       (let ((key (car pair))
             (value (cadr pair)))
         (ht-set! h key value)))))
