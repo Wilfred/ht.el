@@ -29,6 +29,7 @@
 ;;; Code:
 
 (require 'dash)
+(require 'gv)
 
 (defmacro ht (&rest pairs)
   "Create a hash table with the key-value pairs given.
@@ -94,6 +95,8 @@ user-supplied test created via `define-hash-table-test'."
 If KEY isn't present, return DEFAULT (nil if not specified)."
   (gethash key table default))
 
+(gv-define-setter ht-get (value table key) `(ht-set! ,table ,key ,value))
+
 (defun ht-get* (table &rest keys)
   "Look up KEYS in nested hash tables, starting with TABLE.
 The lookup for each key should return another hash table, except
@@ -101,6 +104,15 @@ for the final key, which may return any value."
   (if (cdr keys)
       (apply #'ht-get* (ht-get table (car keys)) (cdr keys))
     (ht-get table (car keys))))
+
+(gv-define-setter ht-get* (value table &rest keys)
+  `(if (cdr ',keys)
+       (let* ((first-key (car ',keys))
+              (last-key (-last-item ',keys))
+              (butlast-key (butlast (cdr ',keys)))
+              (h (apply #'ht-get* (ht-get ,table first-key) butlast-key)))
+         (ht-set! h last-key ,value))
+     (ht-set! ,table (car ',keys) ,value)))
 
 (defun ht-update! (table from-table)
   "Update TABLE according to every key-value pair in FROM-TABLE."
