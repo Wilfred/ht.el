@@ -132,6 +132,34 @@ Accessing nested hash tables:
   (ht-get* alphabets "Greek" 1 'letter))  ; => "α"
 ```
 
+`ht-get` and `ht-get*` have gv-setters and so will work with `setf`:
+
+``` emacs-lisp
+(let ((table (ht-create)))
+  (ht-set! table 1 "A"))
+```
+
+is equivalent to
+
+``` emacs-lisp
+(let ((table (ht-create)))
+  (setf (ht-get table 1) "A"))
+```
+
+and
+
+``` emacs-lisp
+(let ((table (ht (1 (ht (2 (ht (3 "three"))))))))
+  (ht-set! (ht-get (ht-get table 1) 2) 3 :three))
+```
+
+is equivalent to
+
+``` emacs-lisp
+(let ((table (ht (1 (ht (2 (ht (3 "three"))))))))
+  (setf (ht-get* table 1 2 3) :three))
+```
+
 ## Why?
 
 Libraries like [s.el](https://github.com/magnars/s.el) (strings) and
@@ -188,13 +216,13 @@ An alist is an association list, which is a list of pairs. It looks like this:
     ((key1 . value1)
      (key2 . value2)
      (key3 . value3))
-     
+
 An alist can also look like this:
-     
+
     ((key1 . value1)
      (key2 . value2)
      (key1 . oldvalue))
-     
+
 A plist is a property list, which is a flat list with an even number
 of items. It looks like this:
 
