@@ -33,7 +33,10 @@
                    "a"))
     ;; Non-nested
     (should (equal (ht-get* (ht (1 "one")) 1)
-                   "one"))))
+                   "one"))
+    ;; Base case (no keys)
+    (should (equal (ht-get* alphabets)
+                   alphabets))))
 
 (ert-deftest ht-test-setf-ht-get ()
   (let ((test-table (ht (1 "one") (2 "two"))))
@@ -46,7 +49,17 @@
   (let ((test-table (ht (1 (ht (2 (ht (3 "three"))))))))
     (setf (ht-get* test-table 1 2 3) "gamma")
     (should (equal (ht-get* test-table 1 2 3)
-                   "gamma"))))
+                   "gamma")))
+  ;; nested tables { 1 : { 2 : two } }
+  (let ((test-table (ht (1 (ht (2 "two"))))))
+    (setf (ht-get* test-table 1 2) "beta")
+    (should (equal (ht-get* test-table 1 2)
+                   "beta")))
+  ;; Non-nested table { 1 : one }
+  (let ((test-table (ht (1 "one"))))
+    (setf (ht-get* test-table 1) "alpha")
+    (should (equal (ht-get* test-table 1)
+                   "alpha"))))
 
 (ert-deftest ht-test-update ()
   (let ((test-table (ht ("foo" 1))))

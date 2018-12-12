@@ -103,7 +103,9 @@ The lookup for each key should return another hash table, except
 for the final key, which may return any value."
   (if (cdr keys)
       (apply #'ht-get* (ht-get table (car keys)) (cdr keys))
-    (ht-get table (car keys))))
+    (if keys
+        (ht-get table (car keys))
+      table)))
 
 (gv-define-setter ht-get* (value table &rest keys)
   `(if (cdr ',keys)
