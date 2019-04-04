@@ -308,6 +308,22 @@
   (should (not (ht-equal-p (ht (1 2)) (ht (1 2) (3 4)))))
   (should (not (ht-equal-p (ht (1 2) (3 4)) (ht (1 2))))))
 
+(ert-deftest ht-test-two-name-style-predicator ()
+  (let ((real-definition (lambda (sym)
+                           (let ((def sym))
+                             (while (and def (symbolp def))
+                               (setq def (symbol-function def)))
+                             def))))
+    (mapatoms
+     (lambda (sym)
+       (let ((sym-name (symbol-name sym)))
+         (when (string-match "\\`\\(ht.*\\)\\(?:-p\\|\\?\\)\\'" sym-name)
+           (let* ((name-body (match-string 1 sym-name))
+                  (scheme-style-sym (intern (format "%s?" name-body)))
+                  (cl-style-sym (intern (format "%s-p" name-body))))
+             (should (eq (funcall real-definition scheme-style-sym)
+                         (funcall real-definition cl-style-sym))))))))))
+
 (defun ht-run-tests ()
   (interactive)
   (ert-run-tests-interactively "ht-test-"))
