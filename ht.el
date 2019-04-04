@@ -228,7 +228,8 @@ inverse of `ht<-alist'.  The following is not guaranteed:
 
 (defun ht-contains? (table key)
   "Return 't if TABLE contains KEY."
-  (not (eq (ht-get table key 'ht--not-found) 'ht--not-found)))
+  (let ((not-found-symbol (make-symbol "ht--not-found")))
+    (not (eq (ht-get table key not-found-symbol) not-found-symbol))))
 
 (defalias 'ht-contains-p 'ht-contains?)
 
