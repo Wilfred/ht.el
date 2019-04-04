@@ -317,12 +317,16 @@
     (mapatoms
      (lambda (sym)
        (let ((sym-name (symbol-name sym)))
-         (when (string-match "\\`\\(ht.*\\)\\(?:-p\\|\\?\\)\\'" sym-name)
+         (cond
+          ;; Ignore tests
+          ((string-match-p "\\`ht-test" sym-name)
+           nil)
+          ((string-match "\\`\\(ht.*\\)\\(?:-p\\|\\?\\)\\'" sym-name)
            (let* ((name-body (match-string 1 sym-name))
                   (scheme-style-sym (intern (format "%s?" name-body)))
                   (cl-style-sym (intern (format "%s-p" name-body))))
              (should (eq (funcall real-definition scheme-style-sym)
-                         (funcall real-definition cl-style-sym))))))))))
+                         (funcall real-definition cl-style-sym)))))))))))
 
 (defun ht-run-tests ()
   (interactive)
