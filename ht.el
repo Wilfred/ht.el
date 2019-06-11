@@ -241,6 +241,8 @@ inverse of `ht<-alist'.  The following is not guaranteed:
   "Return true if the actual number of entries in TABLE is zero."
   (zerop (ht-size table)))
 
+(defalias 'ht-empty-p 'ht-empty?)
+
 (defun ht-select (function table)
   "Return a hash table containing all entries in TABLE for which
 FUNCTION returns a truthy value.
