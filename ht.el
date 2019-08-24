@@ -1,4 +1,4 @@
-;;; ht.el --- The missing hash table library for Emacs
+;;; ht.el --- The missing hash table library for Emacs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2013 Wilfred Hughes
 
