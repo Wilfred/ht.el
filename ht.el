@@ -1,4 +1,4 @@
-;;; ht.el --- The missing hash table library for Emacs
+;;; ht.el --- The missing hash table library for Emacs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2013 Wilfred Hughes
 
@@ -101,11 +101,12 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
   "Look up KEYS in nested hash tables, starting with TABLE.
 The lookup for each key should return another hash table, except
 for the final key, which may return any value."
-  (if (cdr keys)
-      (apply #'ht-get* (ht-get table (car keys)) (cdr keys))
-    (if keys
-        (ht-get table (car keys))
-      table)))
+  (declare (compiler-macro
+            (lambda (_)
+              (--reduce-from `(ht-get ,acc ,it) table keys))))
+  (while keys
+    (setf table (ht-get table (pop keys))))
+  table)
 
 (gv-define-setter ht-get* (value table &rest keys)
   `(if (cdr ',keys)
