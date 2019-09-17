@@ -95,7 +95,9 @@ user-supplied test created via `define-hash-table-test'."
 If KEY isn't present, return DEFAULT (nil if not specified)."
   (gethash key table default))
 
-(gv-define-setter ht-get (value table key) `(ht-set! ,table ,key ,value))
+;; Don't use `ht-set!' here, gv setter was assumed to return the value
+;; to be set.
+(gv-define-setter ht-get (value table key) `(puthash ,key ,value ,table))
 
 (defun ht-get* (table &rest keys)
   "Look up KEYS in nested hash tables, starting with TABLE.
