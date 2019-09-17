@@ -101,12 +101,13 @@ If KEY isn't present, return DEFAULT (nil if not specified)."
   "Look up KEYS in nested hash tables, starting with TABLE.
 The lookup for each key should return another hash table, except
 for the final key, which may return any value."
-  (declare (compiler-macro
-            (lambda (_)
-              (--reduce-from `(ht-get ,acc ,it) table keys))))
   (while keys
     (setf table (ht-get table (pop keys))))
   table)
+
+(put 'ht-get* 'compiler-macro
+     (lambda (_ table &rest keys)
+       (--reduce-from `(ht-get ,acc ,it) table keys)))
 
 (gv-define-setter ht-get* (value table &rest keys)
   `(if (cdr ',keys)
