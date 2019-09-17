@@ -109,15 +109,6 @@ for the final key, which may return any value."
      (lambda (_ table &rest keys)
        (--reduce-from `(ht-get ,acc ,it) table keys)))
 
-(gv-define-setter ht-get* (value table &rest keys)
-  `(if (cdr ',keys)
-       (let* ((first-key (car ',keys))
-              (last-key (-last-item ',keys))
-              (butlast-key (butlast (cdr ',keys)))
-              (h (apply #'ht-get* (ht-get ,table first-key) butlast-key)))
-         (ht-set! h last-key ,value))
-     (ht-set! ,table (car ',keys) ,value)))
-
 (defun ht-update! (table from-table)
   "Update TABLE according to every key-value pair in FROM-TABLE."
   (maphash
