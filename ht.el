@@ -95,27 +95,21 @@ user-supplied test created via `define-hash-table-test'."
 If KEY isn't present, return DEFAULT (nil if not specified)."
   (gethash key table default))
 
-(gv-define-setter ht-get (value table key) `(ht-set! ,table ,key ,value))
+;; Don't use `ht-set!' here, gv setter was assumed to return the value
+;; to be set.
+(gv-define-setter ht-get (value table key) `(puthash ,key ,value ,table))
 
 (defun ht-get* (table &rest keys)
   "Look up KEYS in nested hash tables, starting with TABLE.
 The lookup for each key should return another hash table, except
 for the final key, which may return any value."
-  (declare (compiler-macro
-            (lambda (_)
-              (--reduce-from `(ht-get ,acc ,it) table keys))))
   (while keys
     (setf table (ht-get table (pop keys))))
   table)
 
-(gv-define-setter ht-get* (value table &rest keys)
-  `(if (cdr ',keys)
-       (let* ((first-key (car ',keys))
-              (last-key (-last-item ',keys))
-              (butlast-key (butlast (cdr ',keys)))
-              (h (apply #'ht-get* (ht-get ,table first-key) butlast-key)))
-         (ht-set! h last-key ,value))
-     (ht-set! ,table (car ',keys) ,value)))
+(put 'ht-get* 'compiler-macro
+     (lambda (_ table &rest keys)
+       (--reduce-from `(ht-get ,acc ,it) table keys)))
 
 (defun ht-update! (table from-table)
   "Update TABLE according to every key-value pair in FROM-TABLE."

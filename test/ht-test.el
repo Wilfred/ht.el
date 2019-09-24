@@ -39,12 +39,19 @@
                    alphabets))))
 
 (ert-deftest ht-test-setf-ht-get ()
+  (let ((test-table (ht (1 "one"))))
+    (should (equal (setf (ht-get test-table 1) "alpha") "alpha")))
+
   (let ((test-table (ht (1 "one") (2 "two"))))
     (setf (ht-get test-table 1)  "alpha")
     (should (equal (ht-get test-table 1)
                    "alpha"))))
 
 (ert-deftest ht-test-setf-ht-get* ()
+  (let ((test-table (ht (1 (ht (2 (ht (3 "three"))))))))
+    (should (equal (setf (ht-get* test-table 1 2 3) "gamma")
+                   "gamma")))
+
   ;; nested tables { 1 : { 2 : { 3 : three } } }
   (let ((test-table (ht (1 (ht (2 (ht (3 "three"))))))))
     (setf (ht-get* test-table 1 2 3) "gamma")
