@@ -154,16 +154,17 @@ FUNCTION is called with two arguments, KEY and VALUE."
 (defmacro ht-amap (form table)
   "Anaphoric version of `ht-map'.
 For every key-value pair in TABLE, evaluate FORM with the
-variables KEY and VALUE bound."
+variables KEY and VALUE bound.  If you don't use both of
+these variables, then use `ht-map' to avoid warnings."
   `(ht-map (lambda (key value) ,form) ,table))
 
 (defun ht-keys (table)
   "Return a list of all the keys in TABLE."
-  (ht-amap key table))
+  (ht-map (lambda (key _value) key) table))
 
 (defun ht-values (table)
   "Return a list of all the values in TABLE."
-  (ht-amap value table))
+  (ht-map (lambda (_key value) value) table))
 
 (defun ht-items (table)
   "Return a list of two-element lists '(key value) from TABLE."
