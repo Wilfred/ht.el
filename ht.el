@@ -66,6 +66,7 @@ user-supplied test created via `define-hash-table-test'."
 TEST indicates the function used to compare the hash
 keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
+  (declare (side-effect-free t))
   (let ((h (ht-create test)))
     ;; the first key-value pair in an alist gets precedence, so we
     ;; start from the end of the list:
@@ -82,6 +83,7 @@ user-supplied test created via `define-hash-table-test'."
 TEST indicates the function used to compare the hash
 keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
+  (declare (side-effect-free t))
   (let ((h (ht-create test)))
     (dolist (pair (nreverse (-partition 2 plist)) h)
       (let ((key (car pair))
@@ -160,14 +162,17 @@ these variables, then use `ht-map' to avoid warnings."
 
 (defun ht-keys (table)
   "Return a list of all the keys in TABLE."
+  (declare (side-effect-free t))
   (ht-map (lambda (key _value) key) table))
 
 (defun ht-values (table)
   "Return a list of all the values in TABLE."
+  (declare (side-effect-free t))
   (ht-map (lambda (_key value) value) table))
 
 (defun ht-items (table)
   "Return a list of two-element lists '(key value) from TABLE."
+  (declare (side-effect-free t))
   (ht-amap (list key value) table))
 
 (defalias 'ht-each 'maphash
@@ -182,6 +187,7 @@ variables key and value bound."
 
 (defun ht-select-keys (table keys)
   "Return a copy of TABLE with only the specified KEYS."
+  (declare (side-effect-free t))
   (let (result)
     (setq result (make-hash-table :test (hash-table-test table)))
     (dolist (key keys result)
@@ -197,6 +203,7 @@ inverse of `ht<-plist'.  The following is not guaranteed:
 \(let ((data '(a b c d)))
   (equalp data
           (ht->plist (ht<-plist data))))"
+  (declare (side-effect-free t))
   (apply 'append (ht-items table)))
 
 (defalias 'ht-to-plist 'ht->plist)
@@ -214,6 +221,7 @@ inverse of `ht<-alist'.  The following is not guaranteed:
 \(let ((data '((a . b) (c . d))))
   (equalp data
           (ht->alist (ht<-alist data))))"
+  (declare (side-effect-free t))
   (ht-amap (cons key value) table))
 
 (defalias 'ht-to-alist 'ht->alist)
@@ -293,6 +301,7 @@ FUNCTION is called with two arguments, KEY and VALUE."
 (defun ht-equal? (table1 table2)
   "Return t if TABLE1 and TABLE2 have the same keys and values.
 Does not compare equality predicates."
+  (declare (side-effect-free t))
   (let ((keys1 (ht-keys table1))
         (keys2 (ht-keys table2))
         (sentinel (make-symbol "ht-sentinel")))
