@@ -30,6 +30,8 @@
 
 (require 'dash)
 (require 'gv)
+(eval-when-compile
+  (require 'inline))
 
 (defmacro ht (&rest pairs)
   "Create a hash table with the key-value pairs given.
@@ -45,20 +47,22 @@ Keys are compared with `equal'.
        ,@assignments
        ,table-symbol)))
 
-(defsubst ht-set! (table key value)
+(define-inline ht-set! (table key value)
   "Associate KEY in TABLE with VALUE."
-  (puthash key value table)
-  nil)
+  (inline-quote
+   (prog1 nil
+     (puthash ,key ,value ,table))))
 
 (defalias 'ht-set 'ht-set!)
 
-(defsubst ht-create (&optional test)
+(define-inline ht-create (&optional test)
   "Create an empty hash table.
 
 TEST indicates the function used to compare the hash
 keys.  Default is `equal'.  It can be `eq', `eql', `equal' or a
 user-supplied test created via `define-hash-table-test'."
-  (make-hash-table :test (or test 'equal)))
+  (declare (side-effect-free t))
+  (inline-quote (make-hash-table :test (or ,test 'equal))))
 
 (defun ht<-alist (alist &optional test)
   "Create a hash table with initial values according to ALIST.
@@ -92,22 +96,27 @@ user-supplied test created via `define-hash-table-test'."
 
 (defalias 'ht-from-plist 'ht<-plist)
 
-(defsubst ht-get (table key &optional default)
+(define-inline ht-get (table key &optional default)
   "Look up KEY in TABLE, and return the matching value.
 If KEY isn't present, return DEFAULT (nil if not specified)."
-  (gethash key table default))
+  (declare (side-effect-free t))
+  (inline-quote
+   (gethash ,key ,table ,default)))
 
 ;; Don't use `ht-set!' here, gv setter was assumed to return the value
 ;; to be set.
 (gv-define-setter ht-get (value table key) `(puthash ,key ,value ,table))
 
-(defun ht-get* (table &rest keys)
+(define-inline ht-get* (table &rest keys)
   "Look up KEYS in nested hash tables, starting with TABLE.
 The lookup for each key should return another hash table, except
 for the final key, which may return any value."
-  (while keys
-    (setf table (ht-get table (pop keys))))
-  table)
+  (declare (side-effect-free t))
+  (inline-letevals (table keys)
+    (inline-quote
+     (prog1 ,table
+       (while ,keys
+         (setf ,table (ht-get table (pop ,keys))))))))
 
 (put 'ht-get* 'compiler-macro
      (lambda (_ table &rest keys)
@@ -130,16 +139,17 @@ table is used."
     (mapc (lambda (table) (ht-update! merged table)) tables)
     merged))
 
-(defsubst ht-remove! (table key)
+(define-inline ht-remove! (table key)
   "Remove KEY from TABLE."
-  (remhash key table))
+  (inline-quote (remhash ,key ,table)))
 
 (defalias 'ht-remove 'ht-remove!)
 
-(defsubst ht-clear! (table)
+(define-inline ht-clear! (table)
   "Remove all keys from TABLE."
-  (clrhash table)
-  nil)
+  (inline-quote
+   (prog1 nil
+     (clrhash ,table))))
 
 (defalias 'ht-clear 'ht-clear!)
 
@@ -208,9 +218,10 @@ inverse of `ht<-plist'.  The following is not guaranteed:
 
 (defalias 'ht-to-plist 'ht->plist)
 
-(defsubst ht-copy (table)
+(define-inline ht-copy (table)
   "Return a shallow copy of TABLE (keys and values are shared)."
-  (copy-hash-table table))
+  (declare (side-effect-free t))
+  (inline-quote (copy-hash-table ,table)))
 
 (defun ht->alist (table)
   "Return a list of two-element lists '(key . value) from TABLE.
@@ -230,20 +241,26 @@ inverse of `ht<-alist'.  The following is not guaranteed:
 
 (defalias 'ht-p 'hash-table-p)
 
-(defun ht-contains? (table key)
+(define-inline ht-contains? (table key)
   "Return 't if TABLE contains KEY."
-  (let ((not-found-symbol (make-symbol "ht--not-found")))
-    (not (eq (ht-get table key not-found-symbol) not-found-symbol))))
+  (declare (side-effect-free t))
+  (inline-quote
+   (let ((not-found-symbol (make-symbol "ht--not-found")))
+     (not (eq (ht-get ,table ,key not-found-symbol) not-found-symbol)))))
 
 (defalias 'ht-contains-p 'ht-contains?)
 
-(defsubst ht-size (table)
+(define-inline ht-size (table)
   "Return the actual number of entries in TABLE."
-  (hash-table-count table))
+  (declare (side-effect-free t))
+  (inline-quote
+   (hash-table-count ,table)))
 
-(defsubst ht-empty? (table)
+(define-inline ht-empty? (table)
   "Return true if the actual number of entries in TABLE is zero."
-  (zerop (ht-size table)))
+  (declare (side-effect-free t))
+  (inline-quote
+   (zerop (ht-size ,table))))
 
 (defalias 'ht-empty-p 'ht-empty?)
 
