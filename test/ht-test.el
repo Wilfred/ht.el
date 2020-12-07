@@ -36,7 +36,10 @@
                    "one"))
     ;; Base case (no keys)
     (should (equal (ht-get* alphabets)
-                   alphabets))))
+                   alphabets))
+    ;; Works with apply, see #38
+    (should (equal (apply #'ht-get* (list (ht) 1))
+                   nil))))
 
 (ert-deftest ht-test-setf-ht-get ()
   (let ((test-table (ht (1 "one"))))
