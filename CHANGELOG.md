@@ -1,3 +1,30 @@
+## v2.3
+
+### Features
+
+* Added `ht-empty-p` as an alias of `ht-empty?`.
+
+* Many functions have been marked as `side-effect-free`, improving
+  performance and byte-compiler warnings.
+
+* `ht-get` and `ht-get*` can now be used with `setf`, e.g.
+
+```
+(setf (ht-get my-table my-key) new-value)
+```
+
+### Bug Fixes
+
+* `ht<-plist` now keeps the first item in the list, if there are
+duplicates. This makes it consistent with `ht<-alist` and
+`plist-get`.
+
+* `ht-get*` now handles an empty list of keys correctly, and will no
+  longer stack overflow on large lists of keys.
+
+* `ht-contains-p` now even supports hash tables that contain the key
+`ht--not-found`.
+
 ## v2.2
 
 * Added `ht-select-keys`
