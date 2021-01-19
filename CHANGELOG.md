@@ -1,3 +1,7 @@
+## v2.4 (not yet tagged)
+
+No changes yet.
+
 ## v2.3
 
 ### Features
