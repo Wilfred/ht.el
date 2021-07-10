@@ -325,8 +325,11 @@ Does not compare equality predicates."
         (sentinel (make-symbol "ht-sentinel")))
     (and (equal (length keys1) (length keys2))
          (--all?
-          (equal (ht-get table1 it)
-                 (ht-get table2 it sentinel))
+          (if (ht-p (ht-get table1 it))
+              (ht-equal-p (ht-get table1 it)
+                          (ht-get table2 it))
+            (equal (ht-get table1 it)
+                 (ht-get table2 it sentinel)))
           keys1))))
 
 (defalias 'ht-equal-p 'ht-equal?)

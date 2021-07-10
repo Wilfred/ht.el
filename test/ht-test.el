@@ -316,7 +316,12 @@
   (should (not (ht-equal-p (ht (1 2)) (ht (2 2)))))
   ;; Different amount of keys.
   (should (not (ht-equal-p (ht (1 2)) (ht (1 2) (3 4)))))
-  (should (not (ht-equal-p (ht (1 2) (3 4)) (ht (1 2))))))
+  (should (not (ht-equal-p (ht (1 2) (3 4)) (ht (1 2)))))
+  ;; Nested
+  (should (ht-equal-p (ht ("foo" (ht ("bar" "baz"))))
+                      (ht ("foo" (ht ("bar" "baz"))))))
+  (should (ht-equal-p (ht ("foo" (ht ("bar" (ht ("baz" "qux"))))))
+                      (ht ("foo" (ht ("bar" (ht ("baz" "qux")))))))))
 
 (ert-deftest ht-test-two-name-style-predicator ()
   (let ((real-definition (lambda (sym)
