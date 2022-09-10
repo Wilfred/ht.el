@@ -182,7 +182,7 @@ these variables, then use `ht-map' to avoid warnings."
   (ht-map (lambda (_key value) value) table))
 
 (defun ht-items (table)
-  "Return a list of two-element lists '(key value) from TABLE."
+  "Return a list of two-element lists \\='(key value) from TABLE."
   (declare (side-effect-free t))
   (ht-amap (list key value) table))
 
@@ -206,12 +206,12 @@ variables key and value bound."
           (puthash key (gethash key table) result)))))
 
 (defun ht->plist (table)
-  "Return a flat list '(key1 value1 key2 value2...) from TABLE.
+  "Return a flat list \\='(key1 value1 key2 value2...) from TABLE.
 
 Note that hash tables are unordered, so this cannot be an exact
 inverse of `ht<-plist'.  The following is not guaranteed:
 
-\(let ((data '(a b c d)))
+\(let ((data \\='(a b c d)))
   (equalp data
           (ht->plist (ht<-plist data))))"
   (declare (side-effect-free t))
@@ -225,12 +225,12 @@ inverse of `ht<-plist'.  The following is not guaranteed:
   (inline-quote (copy-hash-table ,table)))
 
 (defun ht->alist (table)
-  "Return a list of two-element lists '(key . value) from TABLE.
+  "Return a list of two-element lists \\='(key . value) from TABLE.
 
 Note that hash tables are unordered, so this cannot be an exact
 inverse of `ht<-alist'.  The following is not guaranteed:
 
-\(let ((data '((a . b) (c . d))))
+\(let ((data \\='((a . b) (c . d))))
   (equalp data
           (ht->alist (ht<-alist data))))"
   (declare (side-effect-free t))
@@ -243,7 +243,7 @@ inverse of `ht<-alist'.  The following is not guaranteed:
 (defalias 'ht-p 'hash-table-p)
 
 (define-inline ht-contains? (table key)
-  "Return 't if TABLE contains KEY."
+  "Return \\='t if TABLE contains KEY."
   (declare (side-effect-free t))
   (inline-quote
    (let ((not-found-symbol (make-symbol "ht--not-found")))
