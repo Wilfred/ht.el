@@ -1,6 +1,9 @@
 ## v2.4 (not yet tagged)
 
 ### Features
+
+* Added `ht-update-with!`. This is like Racket's `hash-update!`.
+
 ### Bug Fixes
 
 ## v2.3
