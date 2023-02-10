@@ -4,7 +4,7 @@ The missing hash table library for Emacs.
 
 [![MELPA](http://melpa.org/packages/ht-badge.svg)](http://melpa.org/#/ht)
 [![MELPA Stable](http://stable.melpa.org/packages/ht-badge.svg)](http://stable.melpa.org/#/ht)
-[![Build Status](https://travis-ci.org/Wilfred/ht.el.png?branch=master)](https://travis-ci.org/Wilfred/ht.el)
+[![Build Status](https://github.com/Wilfred/ht.el/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Wilfred/ht.el/actions/workflows/test.yml)
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
