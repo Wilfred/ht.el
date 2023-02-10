@@ -1,5 +1,7 @@
 ## v2.4 (not yet tagged)
 
+Switched to GitHub Actions for automated testing.
+
 ### Features
 ### Bug Fixes
 
