@@ -3,6 +3,8 @@
 ### Features
 ### Bug Fixes
 
+* Corrected the documentation for `ht-reject!`.
+
 ## v2.3
 
 ### Features
