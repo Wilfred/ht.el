@@ -1,6 +1,7 @@
 ## v2.4 (not yet tagged)
 
-No changes yet.
+### Features
+### Bug Fixes
 
 ## v2.3
 
