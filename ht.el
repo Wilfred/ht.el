@@ -293,7 +293,7 @@ FUNCTION is called with two arguments, KEY and VALUE."
     results))
 
 (defun ht-reject! (function table)
-  "Delete entries from TABLE for which FUNCTION returns a falsy value.
+  "Delete entries from TABLE for which FUNCTION returns non-nil.
 
 FUNCTION is called with two arguments, KEY and VALUE."
   (ht-each

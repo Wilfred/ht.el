@@ -7,6 +7,8 @@ Switched to GitHub Actions for automated testing.
 
 * `ht-select-keys` can now select keys whose values happen to be the symbol `key-not-found`.
 
+* Corrected the documentation for `ht-reject!`.
+
 ## v2.3
 
 ### Features
