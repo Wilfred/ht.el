@@ -3,6 +3,8 @@
 ### Features
 ### Bug Fixes
 
+* `ht-select-keys` can now select keys whose values happen to be the symbol `key-not-found`.
+
 ## v2.3
 
 ### Features
