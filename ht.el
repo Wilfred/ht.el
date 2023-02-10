@@ -132,6 +132,21 @@ for the final key, which may return any value."
 
 (defalias 'ht-update 'ht-update!)
 
+(define-inline ht-update-with! (table key updater &optional default)
+  "Update the value of KEY in TABLE with UPDATER.
+If the value does not exist, do nothing, unless DEFAULT is
+non-nil, in which case act as if the value is DEFAULT.
+
+UPDATER receives one argument, the value, and its return value
+becomes the new value of KEY."
+  (inline-quote
+   (let* ((not-found-symbol (make-symbol "ht--not-found"))
+          (v (gethash ,key ,table
+                      (or ,default not-found-symbol))))
+     (unless (eq v not-found-symbol)
+       (prog1 nil
+         (puthash ,key (funcall ,updater v) ,table))))))
+
 (defun ht-merge (&rest tables)
   "Crete a new tables that includes all the key-value pairs from TABLES.
 If multiple have tables have the same key, the value in the last

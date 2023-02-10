@@ -71,6 +71,23 @@
     (should (equal (ht-get* test-table 1)
                    "alpha"))))
 
+(ert-deftest ht-test-update-with! ()
+  (let ((test-table (ht ("foo" 1))))
+    ;; Do it
+    (ht-update-with! test-table "foo" #'1+)
+    (should
+     (equal (ht-get test-table "foo") 2))
+
+    ;; Keys stay unset
+    (ht-update-with! test-table "bar" #'1+)
+    (should-not
+     (ht-contains? test-table "bar"))
+
+    ;; Default value
+    (ht-update-with! test-table "bar" #'1+ 0)
+    (should
+     (equal (ht-get test-table "bar") 1))))
+
 (ert-deftest ht-test-update ()
   (let ((test-table (ht ("foo" 1))))
     (ht-update test-table (ht ("bar" 2)))

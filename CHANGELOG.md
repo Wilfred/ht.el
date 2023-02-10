@@ -3,6 +3,9 @@
 Switched to GitHub Actions for automated testing.
 
 ### Features
+
+* Added `ht-update-with!`. This is like Racket's `hash-update!`.
+
 ### Bug Fixes
 
 * `ht-select-keys` can now select keys whose values happen to be the symbol `key-not-found`.
