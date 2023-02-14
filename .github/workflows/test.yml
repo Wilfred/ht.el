@@ -22,8 +22,8 @@ jobs:
         with:
           version: ${{ matrix.emacs_version }}
       - uses: conao3/setup-cask@master
-      - run: cask
       - uses: actions/checkout@v3
+      - run: cask
       - name: Run tests
         run: |
           emacs --version
