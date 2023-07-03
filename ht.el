@@ -148,8 +148,8 @@ becomes the new value of KEY."
          (puthash ,key (funcall ,updater v) ,table))))))
 
 (defun ht-merge (&rest tables)
-  "Crete a new tables that includes all the key-value pairs from TABLES.
-If multiple have tables have the same key, the value in the last
+  "Crete a new table that includes all the key-value pairs from TABLES.
+If multiple tables have the same key, the value in the last
 table is used."
   (let ((merged (ht-create)))
     (mapc (lambda (table) (ht-update! merged table)) tables)
